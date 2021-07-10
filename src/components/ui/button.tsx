@@ -12,7 +12,7 @@ export function Button(props: ButtonProps) {
   const { onClick, className, children } = props;
 
   const classes = classNames(
-    "rounded shadow-sm  font-bold px-3 py-2",
+    "rounded border shadow-md  font-bold px-3 py-2",
     className
   );
 

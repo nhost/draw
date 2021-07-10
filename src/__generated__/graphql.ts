@@ -3501,6 +3501,10 @@ export type GetDrawingFragmentsFragment = (
   & { workspace: (
     { __typename?: 'workspaces' }
     & Pick<Workspaces, 'id' | 'slug'>
+    & { drawings: Array<(
+      { __typename?: 'drawings' }
+      & Pick<Drawings, 'id' | 'name'>
+    )> }
   ) }
 );
 
@@ -3568,7 +3572,7 @@ export type GetWorkspaceBySlugQuery = (
   { __typename?: 'query_root' }
   & { workspaces: Array<(
     { __typename?: 'workspaces' }
-    & Pick<Workspaces, 'id' | 'name'>
+    & Pick<Workspaces, 'id' | 'name' | 'slug'>
     & { drawings: Array<(
       { __typename?: 'drawings' }
       & Pick<Drawings, 'id' | 'name' | 'createdAt' | 'updatedAt'>
@@ -3598,6 +3602,10 @@ export const GetDrawingFragmentsFragmentDoc = gql`
   workspace {
     id
     slug
+    drawings {
+      id
+      name
+    }
   }
 }
     `;
@@ -3748,6 +3756,7 @@ export const GetWorkspaceBySlugDocument = gql`
   workspaces(where: {slug: {_eq: $workspaceSlug}}) {
     id
     name
+    slug
     drawings {
       id
       name

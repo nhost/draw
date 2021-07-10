@@ -3,5 +3,9 @@ type MainProps = {
 };
 
 export function Main({ children }: MainProps) {
-  return <div className="container mx-auto my-3">{children}</div>;
+  return (
+    <div className="container mx-auto my-3">
+      <div className="mx-5">{children}</div>
+    </div>
+  );
 }

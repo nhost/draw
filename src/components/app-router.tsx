@@ -7,8 +7,8 @@ import { Main } from "./layout/main";
 
 export function AppRouter() {
   return (
-    <Layout>
-      <Router>
+    <Router>
+      <Layout>
         <Switch>
           <Route exact path="/">
             <Main>
@@ -24,7 +24,7 @@ export function AppRouter() {
             <Drawing />
           </Route>
         </Switch>
-      </Router>
-    </Layout>
+      </Layout>
+    </Router>
   );
 }

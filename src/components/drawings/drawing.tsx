@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   GetDrawingFragmentsFragment,
   useGetDrawingQuery,
@@ -33,7 +33,7 @@ function DrawingDataLoaded({
 
   const [updateDrawing] = useUpdateDrawingMutation();
 
-  async function autoSaveToDBsetShow() {
+  async function saveStateToDB() {
     // const curr = excalidrawRef.current; //.getSceneElements(),
 
     const elements = excalidrawRef.current.getSceneElements();
@@ -51,41 +51,37 @@ function DrawingDataLoaded({
   }
 
   useEffect(() => {
-    const autoSave = setInterval(() => autoSaveToDBsetShow(), 2000);
+    const autoSave = setInterval(() => saveStateToDB(), 2000);
 
     return () => {
+      saveStateToDB();
       clearInterval(autoSave);
     };
   });
 
   return (
-    <div className="h-screen w-screen grid grid-cols-12">
-      <div>
-        <Link to={`/${drawing.workspace.slug}`}>Go back</Link>
-      </div>
-      <div className="col-span-11">
-        <Excalidraw
-          ref={excalidrawRef}
-          initialData={initialData}
-          // onPointerUpdate={(payload) => console.log(payload)}
-          isCollaborating={true}
-          UIOptions={{
-            canvasActions: {
-              saveAsImage: false,
-              saveToActiveFile: false,
-              changeViewBackgroundColor: true,
-              clearCanvas: false,
-              export: false,
-              loadScene: true,
-              theme: true,
-            },
-          }}
-          viewModeEnabled={false}
-          zenModeEnabled={false}
-          gridModeEnabled={false}
-          name="Nhost custom gogo"
-        />
-      </div>
+    <div className="h-full w-full bg-blue-800">
+      <Excalidraw
+        ref={excalidrawRef}
+        initialData={initialData}
+        // onPointerUpdate={(payload) => console.log(payload)}
+        isCollaborating={true}
+        UIOptions={{
+          canvasActions: {
+            saveAsImage: false,
+            saveToActiveFile: false,
+            changeViewBackgroundColor: true,
+            clearCanvas: false,
+            export: false,
+            loadScene: true,
+            theme: true,
+          },
+        }}
+        viewModeEnabled={false}
+        zenModeEnabled={false}
+        gridModeEnabled={false}
+        name="Nhost custom gogo"
+      />
     </div>
   );
 }

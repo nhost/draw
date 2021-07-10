@@ -10,6 +10,7 @@ query getWorkspaceBySlug($workspaceSlug: String!) {
   workspaces(where: { slug: { _eq: $workspaceSlug } }) {
     id
     name
+    slug
     drawings {
       id
       name

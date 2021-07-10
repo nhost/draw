@@ -1,3 +1,4 @@
+import { Button, TextField } from "components/ui";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useInsertDrawingMutation } from "__generated__/graphql";
@@ -28,24 +29,20 @@ export function DrawingNew({ workspaceId }: { workspaceId: string }) {
   }
 
   return (
-    <div>
+    <div className="border rounded p-4">
       <div>Create new drawing</div>
       {error && <div>error creating drawing</div>}
       <div>
         <form onSubmit={handleSubmit}>
-          <input
+          <TextField
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <div>
-            <button
-              className="border rounded px-3 py-2"
-              type="submit"
-              disabled={loading}
-            >
+            <Button className="my-3" type="submit" disabled={loading}>
               Create drawing
-            </button>
+            </Button>
           </div>
         </form>
       </div>
