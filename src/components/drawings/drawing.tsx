@@ -76,7 +76,7 @@ function DrawingDataLoaded({
               changeViewBackgroundColor: true,
               clearCanvas: false,
               export: false,
-              loadScene: false,
+              loadScene: true,
               theme: true,
             },
           }}

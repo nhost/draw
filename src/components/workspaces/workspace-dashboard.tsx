@@ -33,7 +33,7 @@ export function WorkspaceDashboard() {
 
   return (
     <div>
-      <div className="text-3xl">{workspace.name}</div>
+      <div className="text-4xl py-3">{workspace.name}</div>
 
       <div>
         <DrawingNew workspaceId={workspace.id} />

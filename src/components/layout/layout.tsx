@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { nhost } from "utils/nhost";
 
 type LayoutProps = {
@@ -9,7 +10,9 @@ export function Layout({ children }: LayoutProps) {
     <div>
       <div className="container mx-auto my-3">
         <div className="flex items-center justify-between">
-          <div>Nhost - Draw</div>
+          <div>
+            <Link to={`/`}>Nhost - Draw</Link>
+          </div>
           <div>
             <button onClick={() => nhost.auth.logout()}>Logout</button>
           </div>
