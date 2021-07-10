@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import slugify from "slugify";
+import { nhost } from "utils/nhost";
 import { useInsertWorkspaceMutation } from "__generated__/graphql";
 
 export function WorkspaceNew() {
@@ -22,6 +23,14 @@ export function WorkspaceNew() {
         workspace: {
           name,
           slug,
+          workspaceMemebers: {
+            data: [
+              {
+                memberUserId: nhost.auth.user()?.id,
+                type: "admin",
+              },
+            ],
+          },
         },
       },
     });

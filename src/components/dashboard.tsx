@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useGetWorksapcesQuery } from "__generated__/graphql";
 import { WorkspaceNew } from "./workspaces/workspace-new";
 
@@ -19,7 +20,11 @@ export function Dashboard() {
 
       {loading && <div>Loading...</div>}
       {data?.workspaces.map((workspace) => {
-        return <div>{workspace.name}</div>;
+        return (
+          <div key={workspace.id}>
+            <Link to={`/${workspace.slug}`}>{workspace.name}</Link>
+          </div>
+        );
       })}
 
       <div className="py-12">
