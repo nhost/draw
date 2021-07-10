@@ -1,0 +1,11 @@
+overwrite: true
+schema: "https://hasura-bf8d3585.nhost.app/v1/graphql"
+headers:
+  x-hasura-admin-secret: bc13d5d4dbb9df0617c85dc8d5faa555
+documents: "src/**/*.graphql"
+generates:
+  src/__generated__/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

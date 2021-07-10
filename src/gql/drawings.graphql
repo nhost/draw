@@ -1,0 +1,31 @@
+fragment getDrawingFragments on drawings {
+  id
+  name
+  appState
+  elements
+  workspace {
+    id
+    slug
+  }
+}
+
+query getDrawing($drawingId: uuid!) {
+  drawing(id: $drawingId) {
+    ...getDrawingFragments
+  }
+}
+mutation insertDrawing($drawing: drawings_insert_input!) {
+  insertDrawing(object: $drawing) {
+    id
+    workspace {
+      id
+      slug
+    }
+  }
+}
+
+mutation updateDrawing($drawingId: uuid!, $drawing: drawings_set_input!) {
+  updateDrawing(pk_columns: { id: $drawingId }, _set: $drawing) {
+    id
+  }
+}

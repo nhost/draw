@@ -1,0 +1,26 @@
+query getWorksapces {
+  workspaces {
+    id
+    name
+    slug
+  }
+}
+
+query getWorkspaceBySlug($workspaceSlug: String!) {
+  workspaces(where: { slug: { _eq: $workspaceSlug } }) {
+    id
+    name
+    drawings {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation insertWorkspace($workspace: workspaces_insert_input!) {
+  insertWorkspace(object: $workspace) {
+    id
+  }
+}
