@@ -51,7 +51,7 @@ function DrawingDataLoaded({
   }
 
   useEffect(() => {
-    const autoSave = setInterval(() => autoSaveToDBsetShow(), 4000);
+    const autoSave = setInterval(() => autoSaveToDBsetShow(), 2000);
 
     return () => {
       clearInterval(autoSave);
