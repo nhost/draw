@@ -17,13 +17,13 @@ export function Dashboard() {
 
   return (
     <Main>
-      <div>
-        <h1>Workspaces</h1>
+      <div className="my-8">
+        <div className="font-bold">Workspaces</div>
 
         {loading && <div>Loading...</div>}
         {data?.workspaces.map((workspace) => {
           return (
-            <div key={workspace.id}>
+            <div key={workspace.id} className="px-4 py-2 border-b">
               <Link to={`/${workspace.slug}`}>{workspace.name}</Link>
             </div>
           );
