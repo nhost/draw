@@ -1604,7 +1604,7 @@ export type Drawings = {
   createdAt: Scalars['timestamptz'];
   elements: Scalars['jsonb'];
   id: Scalars['uuid'];
-  is_public: Scalars['Boolean'];
+  isPublic: Scalars['Boolean'];
   name: Scalars['String'];
   updatedAt: Scalars['timestamptz'];
 };
@@ -1674,7 +1674,7 @@ export type Drawings_Bool_Exp = {
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   elements?: Maybe<Jsonb_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
-  is_public?: Maybe<Boolean_Comparison_Exp>;
+  isPublic?: Maybe<Boolean_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
 };
@@ -1711,7 +1711,7 @@ export type Drawings_Insert_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   elements?: Maybe<Scalars['jsonb']>;
   id?: Maybe<Scalars['uuid']>;
-  is_public?: Maybe<Scalars['Boolean']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
 };
@@ -1778,7 +1778,7 @@ export type Drawings_Order_By = {
   createdAt?: Maybe<Order_By>;
   elements?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  is_public?: Maybe<Order_By>;
+  isPublic?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
 };
@@ -1807,7 +1807,7 @@ export enum Drawings_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  IsPublic = 'is_public',
+  IsPublic = 'isPublic',
   /** column name */
   Name = 'name',
   /** column name */
@@ -1821,7 +1821,7 @@ export type Drawings_Set_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   elements?: Maybe<Scalars['jsonb']>;
   id?: Maybe<Scalars['uuid']>;
-  is_public?: Maybe<Scalars['Boolean']>;
+  isPublic?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
 };
@@ -1839,7 +1839,7 @@ export enum Drawings_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  IsPublic = 'is_public',
+  IsPublic = 'isPublic',
   /** column name */
   Name = 'name',
   /** column name */
@@ -4115,7 +4115,7 @@ export type InsertCollectionMutation = (
 
 export type GetDrawingFragmentsFragment = (
   { __typename?: 'drawings' }
-  & Pick<Drawings, 'id' | 'name' | 'appState' | 'elements'>
+  & Pick<Drawings, 'id' | 'name' | 'appState' | 'elements' | 'isPublic'>
   & { collection: (
     { __typename?: 'collections' }
     & Pick<Collections, 'id' | 'name'>
@@ -4159,7 +4159,7 @@ export type InsertDrawingMutation = (
   { __typename?: 'mutation_root' }
   & { insertDrawing?: Maybe<(
     { __typename?: 'drawings' }
-    & Pick<Drawings, 'id'>
+    & Pick<Drawings, 'id' | 'name'>
     & { collection: (
       { __typename?: 'collections' }
       & Pick<Collections, 'id'>
@@ -4261,6 +4261,7 @@ export const GetDrawingFragmentsFragmentDoc = gql`
   name
   appState
   elements
+  isPublic
   collection {
     id
     name
@@ -4452,6 +4453,7 @@ export const InsertDrawingDocument = gql`
     mutation insertDrawing($drawing: drawings_insert_input!) {
   insertDrawing(object: $drawing) {
     id
+    name
     collection {
       id
       workspace {

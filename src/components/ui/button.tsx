@@ -4,13 +4,19 @@ type ButtonProps = {
   onClick?: () => void;
   className?: string;
   type: string;
-  disabled?: boolean;
+  loading: boolean;
+  disabled: boolean;
   children: React.ReactNode;
 };
 
-export function Button(props: ButtonProps) {
-  const { onClick, className, children } = props;
-
+export function Button({
+  onClick,
+  className,
+  type,
+  loading,
+  disabled,
+  children,
+}: ButtonProps) {
   const classes = classNames(
     "rounded border shadow-md  font-bold px-3 py-2",
     className
@@ -18,7 +24,16 @@ export function Button(props: ButtonProps) {
 
   return (
     <button type="submit" onClick={onClick} className={classes}>
-      {children}
+      <div className="flex items-center">
+        {loading && <span>loading...</span>}
+        {children}
+      </div>
     </button>
   );
 }
+
+Button.defaultProps = {
+  type: "submit",
+  loading: false,
+  disabled: false,
+};

@@ -26,3 +26,7 @@ export function TextField(props: TextFieldProps) {
     />
   );
 }
+
+TextField.defaultProps = {
+  type: "text",
+};

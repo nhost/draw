@@ -3,6 +3,7 @@ fragment getDrawingFragments on drawings {
   name
   appState
   elements
+  isPublic
   collection {
     id
     name
@@ -33,6 +34,7 @@ query getDrawing($drawingId: uuid!) {
 mutation insertDrawing($drawing: drawings_insert_input!) {
   insertDrawing(object: $drawing) {
     id
+    name
     collection {
       id
       workspace {

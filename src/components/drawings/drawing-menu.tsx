@@ -1,5 +1,9 @@
+import { useState } from "react";
+import { SvgCog } from "components/svg";
 import { Link, useParams } from "react-router-dom";
 import { useGetDrawingQuery } from "__generated__/graphql";
+import { DrawingSettings } from "./drawing-settings";
+import { Modal } from "components/ui/modal";
 
 interface ParamTypes {
   workspaceSlug: string;
@@ -9,6 +13,8 @@ interface ParamTypes {
 
 export function DrawingMenu() {
   const { workspaceSlug, collectionId, drawingId } = useParams<ParamTypes>();
+
+  const [drawingIdSetting, setDrawingIdSetting] = useState<null | string>(null);
 
   const { data, loading, error } = useGetDrawingQuery({
     variables: {
@@ -75,15 +81,32 @@ export function DrawingMenu() {
       <div>
         {drawing.collection.drawings.map((drawing) => {
           return (
-            <Link
-              key={drawing.id}
-              to={`/${workspaceSlug}/${collectionId}/${drawing.id}`}
-              className="border-b border-gray-200 block py-2 hover:bg-gray-100 px-4 transition-all duration-200 ease-in-out"
-            >
-              {drawing.name}
-            </Link>
+            <div className="flex items-center justify-between border-b border-gray-200 hover:bg-gray-100 transition-all duration-200 ease-in-out">
+              <Link
+                key={drawing.id}
+                to={`/${workspaceSlug}/${collectionId}/${drawing.id}`}
+                className=" block py-2 px-4 w-full mr-4"
+              >
+                {drawing.name}
+              </Link>
+              {drawing.id === drawingId && (
+                <div className="h-full ">
+                  <div
+                    onClick={() => setDrawingIdSetting(drawing.id)}
+                    className="px-3 cursor-pointer"
+                  >
+                    <SvgCog />
+                  </div>
+                </div>
+              )}
+            </div>
           );
         })}
+        {drawingIdSetting && (
+          <Modal open={true} onClose={() => setDrawingIdSetting(null)}>
+            <DrawingSettings drawingId={drawingIdSetting} />
+          </Modal>
+        )}
       </div>
     </div>
   );
