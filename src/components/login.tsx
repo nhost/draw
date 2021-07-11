@@ -48,6 +48,11 @@ export function Login() {
             <Button type="submit">Login</Button>
           </div>
         </form>
+        <div>
+          <div onClick={() => nhost.auth.login({ provider: "github" })}>
+            or login with GitHub
+          </div>
+        </div>
       </div>
     </div>
   );

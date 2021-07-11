@@ -19,14 +19,14 @@ function DrawingDataLoaded({
 
   // need to set collaborators to new Map();
   const appStateFromDb = drawing.appState;
-  const appState = {
+  const initAppState = {
     ...appStateFromDb,
     collaborators: new Map(),
   };
 
   const initialData = {
     elements: drawing.elements,
-    appState,
+    appState: initAppState,
   };
 
   return (
@@ -67,12 +67,14 @@ export function PublicDrawing() {
     },
   });
 
+  console.log("rerender PublicDrawing");
+
   if (error) {
     console.log(error);
     return <div>error</div>;
   }
 
-  if (loading) {
+  if (!data && loading) {
     return <div>loading</div>;
   }
 
