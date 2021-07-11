@@ -37,17 +37,15 @@ export function WorkspaceDashboard() {
       <div>
         <div className="text-4xl py-3">{workspace.name}</div>
 
-        <div>
-          <div>Collections</div>
+        <div className="my-8">
+          <div className="font-bold">Collections</div>
           <div>
             {workspace.collections.map((collection) => {
               return (
-                <div key={collection.id}>
-                  <div>
-                    <Link to={`/${workspaceSlug}/${collection.id}`}>
-                      {collection.name}
-                    </Link>
-                  </div>
+                <div key={collection.id} className="px-4 py-2 border-b">
+                  <Link to={`/${workspaceSlug}/${collection.id}`}>
+                    {collection.name}
+                  </Link>
                 </div>
               );
             })}
@@ -57,7 +55,7 @@ export function WorkspaceDashboard() {
           <CollectionNew workspaceId={workspace.id} />
         </div>
         <div className="my-4">
-          <div>Workspace members</div>
+          <div className="font-bold">Workspace members</div>
           <div>
             {workspace.workspaceMemebers.map((workspaceMember) => {
               return (
