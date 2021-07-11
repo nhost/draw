@@ -35,16 +35,19 @@ export function WorkspaceMenu() {
 
   return (
     <div>
-      <div className="my-2 text-2xl">{workspace.name}</div>
+      <div className="my-2 text-2xl">
+        <Link to={`/${workspace.slug}`}>{workspace.name}</Link>
+      </div>
+      <div className="font-bold mt-8 mb-4">Collections</div>
       <div>
-        {workspace.drawings.map((drawing) => {
+        {workspace.collections.map((collection) => {
           return (
             <Link
-              key={drawing.id}
-              to={`/${workspace.slug}/${drawing.id}`}
+              key={collection.id}
+              to={`/${workspace.slug}/${collection.id}`}
               className="border-b border-gray-200 block py-2 hover:bg-gray-100 px-4 transition-all duration-200 ease-in-out"
             >
-              {drawing.name}
+              {collection.name}
             </Link>
           );
         })}

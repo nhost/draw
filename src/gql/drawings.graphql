@@ -3,12 +3,23 @@ fragment getDrawingFragments on drawings {
   name
   appState
   elements
-  workspace {
+  collection {
     id
-    slug
+    name
     drawings {
       id
       name
+    }
+    workspace {
+      id
+      slug
+      collections {
+        id
+        drawings {
+          id
+          name
+        }
+      }
     }
   }
 }
@@ -21,9 +32,12 @@ query getDrawing($drawingId: uuid!) {
 mutation insertDrawing($drawing: drawings_insert_input!) {
   insertDrawing(object: $drawing) {
     id
-    workspace {
+    collection {
       id
-      slug
+      workspace {
+        id
+        slug
+      }
     }
   }
 }

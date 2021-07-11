@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useGetWorksapcesQuery } from "__generated__/graphql";
+import { Main } from "./layout/main";
 import { WorkspaceNew } from "./workspaces/workspace-new";
 
 export function Dashboard() {
@@ -7,29 +8,31 @@ export function Dashboard() {
 
   if (error) {
     console.log(error);
-    return <div>error</div>;
+    return <Main>error</Main>;
   }
 
   if (loading) {
-    return <div>loading</div>;
+    return <Main>loading</Main>;
   }
 
   return (
-    <div>
-      <h1>Workspaces</h1>
+    <Main>
+      <div>
+        <h1>Workspaces</h1>
 
-      {loading && <div>Loading...</div>}
-      {data?.workspaces.map((workspace) => {
-        return (
-          <div key={workspace.id}>
-            <Link to={`/${workspace.slug}`}>{workspace.name}</Link>
-          </div>
-        );
-      })}
+        {loading && <div>Loading...</div>}
+        {data?.workspaces.map((workspace) => {
+          return (
+            <div key={workspace.id}>
+              <Link to={`/${workspace.slug}`}>{workspace.name}</Link>
+            </div>
+          );
+        })}
 
-      <div className="py-12">
-        <WorkspaceNew />
+        <div className="py-12">
+          <WorkspaceNew />
+        </div>
       </div>
-    </div>
+    </Main>
   );
 }

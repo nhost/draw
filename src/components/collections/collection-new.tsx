@@ -1,34 +1,34 @@
 import { Button, TextField } from "components/ui";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useInsertDrawingMutation } from "__generated__/graphql";
+import { useInsertCollectionMutation } from "__generated__/graphql";
 
-export function DrawingNew({ collectionId }: { collectionId: string }) {
+export function CollectionNew({ workspaceId }: { workspaceId: string }) {
   const [name, setName] = useState("");
   const history = useHistory();
 
-  const [insertWorkspace, { error, loading }] = useInsertDrawingMutation();
+  const [insertCollection, { error, loading }] = useInsertCollectionMutation();
 
   async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
 
-    const { data } = await insertWorkspace({
+    const { data } = await insertCollection({
       variables: {
-        drawing: {
+        collection: {
           name,
-          collectionId,
+          workspaceId,
         },
       },
     });
 
     history.push(
-      `/${data?.insertDrawing?.collection.workspace.slug}/${data?.insertDrawing?.collection.id}/${data?.insertDrawing?.id}`
+      `/${data?.insertCollection?.workspace.slug}/${data?.insertCollection?.id}`
     );
   }
 
   return (
     <div className="border rounded p-4">
-      <div>Create new drawing</div>
+      <div>Create new collection</div>
       {error && <div>error creating drawing</div>}
       <div>
         <form onSubmit={handleSubmit}>
@@ -39,7 +39,7 @@ export function DrawingNew({ collectionId }: { collectionId: string }) {
           />
           <div>
             <Button className="my-3" type="submit" disabled={loading}>
-              Create drawing
+              Create Collection
             </Button>
           </div>
         </form>

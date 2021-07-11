@@ -3,7 +3,7 @@ import { Layout } from "components/layout/layout";
 import { Dashboard } from "./dashboard";
 import { Drawing } from "./drawings/drawing";
 import { WorkspaceDashboard } from "./workspaces/workspace-dashboard";
-import { Main } from "./layout/main";
+import { Collection } from "./collections/collection";
 
 export function AppRouter() {
   return (
@@ -11,16 +11,15 @@ export function AppRouter() {
       <Layout>
         <Switch>
           <Route exact path="/">
-            <Main>
-              <Dashboard />
-            </Main>
+            <Dashboard />
           </Route>
           <Route exact path="/:workspaceSlug">
-            <Main>
-              <WorkspaceDashboard />
-            </Main>
+            <WorkspaceDashboard />
           </Route>
-          <Route exact path="/:workspaceId/:drawingId">
+          <Route exact path="/:workspaceSlug/:collectionId">
+            <Collection />
+          </Route>
+          <Route exact path="/:workspaceSlug/:collectionId/:drawingId">
             <Drawing />
           </Route>
         </Switch>

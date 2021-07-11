@@ -2,14 +2,18 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import slugify from "slugify";
 import { nhost } from "utils/nhost";
-import { useInsertWorkspaceMutation } from "__generated__/graphql";
+import {
+  useInsertCollectionMutation,
+  useInsertWorkspaceMutation,
+} from "__generated__/graphql";
 import { Button } from "components/ui";
 
 export function WorkspaceNew() {
   const [name, setName] = useState("");
   const history = useHistory();
 
-  const [insertWorkspace, { error, loading }] = useInsertWorkspaceMutation();
+  const [insertWorkspace] = useInsertWorkspaceMutation();
+  const [insertCollection] = useInsertCollectionMutation();
 
   async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
@@ -19,7 +23,7 @@ export function WorkspaceNew() {
       strict: true,
     });
 
-    await insertWorkspace({
+    const ret = await insertWorkspace({
       variables: {
         workspace: {
           name,
@@ -36,13 +40,26 @@ export function WorkspaceNew() {
       },
     });
 
+    if (!ret.data?.insertWorkspace) {
+      console.log("error to insert workspace");
+      return;
+    }
+
+    await insertCollection({
+      variables: {
+        collection: {
+          name: "Main",
+          workspaceId: ret.data.insertWorkspace.id,
+        },
+      },
+    });
+
     history.push(`/${slug}`);
   }
 
   return (
     <div>
       <div>Crete new workspace</div>
-      {error && <div>error inserting workspace</div>}
       <div>
         <form onSubmit={handleSubmit}>
           <input
@@ -52,11 +69,7 @@ export function WorkspaceNew() {
             className="border rounded shadow-md px-2 py-1 my-2"
           />
           <div>
-            <Button
-              className="border rounded px-3 py-2"
-              type="submit"
-              disabled={loading}
-            >
+            <Button className="border rounded px-3 py-2" type="submit">
               Create workspace
             </Button>
           </div>

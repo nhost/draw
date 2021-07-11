@@ -1,4 +1,5 @@
-import { DrawingNew } from "components/drawings/drawing-new";
+import { CollectionNew } from "components/collections/collection-new";
+import { Main } from "components/layout/main";
 import { Link, useParams } from "react-router-dom";
 import { useGetWorkspaceBySlugQuery } from "__generated__/graphql";
 
@@ -32,29 +33,42 @@ export function WorkspaceDashboard() {
   }
 
   return (
-    <div>
-      <div className="text-4xl py-3">{workspace.name}</div>
-
+    <Main>
       <div>
-        <DrawingNew workspaceId={workspace.id} />
-      </div>
+        <div className="text-4xl py-3">{workspace.name}</div>
 
-      <div>
-        <div>Drawings:</div>
         <div>
-          {workspace.drawings.map((drawing) => {
-            return (
-              <div key={drawing.id}>
-                <div>
-                  <Link to={`/${workspaceSlug}/${drawing.id}`}>
-                    {drawing.name}
-                  </Link>
+          <div>Collections</div>
+          <div>
+            {workspace.collections.map((collection) => {
+              return (
+                <div key={collection.id}>
+                  <div>
+                    <Link to={`/${workspaceSlug}/${collection.id}`}>
+                      {collection.name}
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+        </div>
+        <div>
+          <CollectionNew workspaceId={workspace.id} />
+        </div>
+        <div className="my-4">
+          <div>Workspace members</div>
+          <div>
+            {workspace.workspaceMemebers.map((workspaceMember) => {
+              return (
+                <div key={workspaceMember.id}>
+                  {workspaceMember.member.display_name} ({workspaceMember.type})
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </Main>
   );
 }

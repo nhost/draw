@@ -1,0 +1,38 @@
+query getCollections {
+  collections {
+    id
+    name
+    drawings {
+      id
+      name
+    }
+  }
+}
+
+query getCollectionById($collectionId: uuid!) {
+  collection(id: $collectionId) {
+    id
+    name
+    drawings {
+      id
+      name
+      collection {
+        id
+        workspace {
+          id
+          slug
+        }
+      }
+    }
+  }
+}
+
+mutation insertCollection($collection: collections_insert_input!) {
+  insertCollection(object: $collection) {
+    id
+    workspace {
+      id
+      slug
+    }
+  }
+}

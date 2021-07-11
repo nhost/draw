@@ -11,11 +11,23 @@ query getWorkspaceBySlug($workspaceSlug: String!) {
     id
     name
     slug
-    drawings {
+    collections {
       id
       name
-      createdAt
-      updatedAt
+      drawings {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+    }
+    workspaceMemebers {
+      id
+      type
+      member {
+        id
+        display_name
+      }
     }
   }
 }

@@ -1377,18 +1377,235 @@ export type Citext_Comparison_Exp = {
   _similar?: Maybe<Scalars['citext']>;
 };
 
-/** columns and relationships of "drawings" */
-export type Drawings = {
-  __typename?: 'drawings';
-  appState: Scalars['jsonb'];
+/** columns and relationships of "collections" */
+export type Collections = {
+  __typename?: 'collections';
   createdAt: Scalars['timestamptz'];
-  elements: Scalars['jsonb'];
+  /** An array relationship */
+  drawings: Array<Drawings>;
+  /** An aggregate relationship */
+  drawings_aggregate: Drawings_Aggregate;
   id: Scalars['uuid'];
   name: Scalars['String'];
   updatedAt: Scalars['timestamptz'];
   /** An object relationship */
   workspace: Workspaces;
   workspaceId: Scalars['uuid'];
+};
+
+
+/** columns and relationships of "collections" */
+export type CollectionsDrawingsArgs = {
+  distinct_on?: Maybe<Array<Drawings_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Drawings_Order_By>>;
+  where?: Maybe<Drawings_Bool_Exp>;
+};
+
+
+/** columns and relationships of "collections" */
+export type CollectionsDrawings_AggregateArgs = {
+  distinct_on?: Maybe<Array<Drawings_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Drawings_Order_By>>;
+  where?: Maybe<Drawings_Bool_Exp>;
+};
+
+/** aggregated selection of "collections" */
+export type Collections_Aggregate = {
+  __typename?: 'collections_aggregate';
+  aggregate?: Maybe<Collections_Aggregate_Fields>;
+  nodes: Array<Collections>;
+};
+
+/** aggregate fields of "collections" */
+export type Collections_Aggregate_Fields = {
+  __typename?: 'collections_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Collections_Max_Fields>;
+  min?: Maybe<Collections_Min_Fields>;
+};
+
+
+/** aggregate fields of "collections" */
+export type Collections_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Collections_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "collections" */
+export type Collections_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Collections_Max_Order_By>;
+  min?: Maybe<Collections_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "collections" */
+export type Collections_Arr_Rel_Insert_Input = {
+  data: Array<Collections_Insert_Input>;
+  /** on conflict condition */
+  on_conflict?: Maybe<Collections_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "collections". All fields are combined with a logical 'AND'. */
+export type Collections_Bool_Exp = {
+  _and?: Maybe<Array<Collections_Bool_Exp>>;
+  _not?: Maybe<Collections_Bool_Exp>;
+  _or?: Maybe<Array<Collections_Bool_Exp>>;
+  createdAt?: Maybe<Timestamptz_Comparison_Exp>;
+  drawings?: Maybe<Drawings_Bool_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
+  workspace?: Maybe<Workspaces_Bool_Exp>;
+  workspaceId?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "collections" */
+export enum Collections_Constraint {
+  /** unique or primary key constraint */
+  CollectionsPkey = 'collections_pkey'
+}
+
+/** input type for inserting data into table "collections" */
+export type Collections_Insert_Input = {
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  drawings?: Maybe<Drawings_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  workspace?: Maybe<Workspaces_Obj_Rel_Insert_Input>;
+  workspaceId?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Collections_Max_Fields = {
+  __typename?: 'collections_max_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  workspaceId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "collections" */
+export type Collections_Max_Order_By = {
+  createdAt?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  workspaceId?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Collections_Min_Fields = {
+  __typename?: 'collections_min_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  workspaceId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "collections" */
+export type Collections_Min_Order_By = {
+  createdAt?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  workspaceId?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "collections" */
+export type Collections_Mutation_Response = {
+  __typename?: 'collections_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Collections>;
+};
+
+/** input type for inserting object relation for remote table "collections" */
+export type Collections_Obj_Rel_Insert_Input = {
+  data: Collections_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<Collections_On_Conflict>;
+};
+
+/** on conflict condition type for table "collections" */
+export type Collections_On_Conflict = {
+  constraint: Collections_Constraint;
+  update_columns?: Array<Collections_Update_Column>;
+  where?: Maybe<Collections_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "collections". */
+export type Collections_Order_By = {
+  createdAt?: Maybe<Order_By>;
+  drawings_aggregate?: Maybe<Drawings_Aggregate_Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  workspace?: Maybe<Workspaces_Order_By>;
+  workspaceId?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: collections */
+export type Collections_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "collections" */
+export enum Collections_Select_Column {
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  WorkspaceId = 'workspaceId'
+}
+
+/** input type for updating data in table "collections" */
+export type Collections_Set_Input = {
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  workspaceId?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "collections" */
+export enum Collections_Update_Column {
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  WorkspaceId = 'workspaceId'
+}
+
+/** columns and relationships of "drawings" */
+export type Drawings = {
+  __typename?: 'drawings';
+  appState: Scalars['jsonb'];
+  /** An object relationship */
+  collection: Collections;
+  collectionId: Scalars['uuid'];
+  createdAt: Scalars['timestamptz'];
+  elements: Scalars['jsonb'];
+  id: Scalars['uuid'];
+  name: Scalars['String'];
+  updatedAt: Scalars['timestamptz'];
 };
 
 
@@ -1451,13 +1668,13 @@ export type Drawings_Bool_Exp = {
   _not?: Maybe<Drawings_Bool_Exp>;
   _or?: Maybe<Array<Drawings_Bool_Exp>>;
   appState?: Maybe<Jsonb_Comparison_Exp>;
+  collection?: Maybe<Collections_Bool_Exp>;
+  collectionId?: Maybe<Uuid_Comparison_Exp>;
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   elements?: Maybe<Jsonb_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
-  workspace?: Maybe<Workspaces_Bool_Exp>;
-  workspaceId?: Maybe<Uuid_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "drawings" */
@@ -1487,51 +1704,51 @@ export type Drawings_Delete_Key_Input = {
 /** input type for inserting data into table "drawings" */
 export type Drawings_Insert_Input = {
   appState?: Maybe<Scalars['jsonb']>;
+  collection?: Maybe<Collections_Obj_Rel_Insert_Input>;
+  collectionId?: Maybe<Scalars['uuid']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
   elements?: Maybe<Scalars['jsonb']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
-  workspace?: Maybe<Workspaces_Obj_Rel_Insert_Input>;
-  workspaceId?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate max on columns */
 export type Drawings_Max_Fields = {
   __typename?: 'drawings_max_fields';
+  collectionId?: Maybe<Scalars['uuid']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
-  workspaceId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "drawings" */
 export type Drawings_Max_Order_By = {
+  collectionId?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
-  workspaceId?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Drawings_Min_Fields = {
   __typename?: 'drawings_min_fields';
+  collectionId?: Maybe<Scalars['uuid']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
-  workspaceId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "drawings" */
 export type Drawings_Min_Order_By = {
+  collectionId?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
-  workspaceId?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "drawings" */
@@ -1553,13 +1770,13 @@ export type Drawings_On_Conflict = {
 /** Ordering options when selecting data from "drawings". */
 export type Drawings_Order_By = {
   appState?: Maybe<Order_By>;
+  collection?: Maybe<Collections_Order_By>;
+  collectionId?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   elements?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
-  workspace?: Maybe<Workspaces_Order_By>;
-  workspaceId?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: drawings */
@@ -1578,6 +1795,8 @@ export enum Drawings_Select_Column {
   /** column name */
   AppState = 'appState',
   /** column name */
+  CollectionId = 'collectionId',
+  /** column name */
   CreatedAt = 'createdAt',
   /** column name */
   Elements = 'elements',
@@ -1586,20 +1805,18 @@ export enum Drawings_Select_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  UpdatedAt = 'updatedAt',
-  /** column name */
-  WorkspaceId = 'workspaceId'
+  UpdatedAt = 'updatedAt'
 }
 
 /** input type for updating data in table "drawings" */
 export type Drawings_Set_Input = {
   appState?: Maybe<Scalars['jsonb']>;
+  collectionId?: Maybe<Scalars['uuid']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
   elements?: Maybe<Scalars['jsonb']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
-  workspaceId?: Maybe<Scalars['uuid']>;
 };
 
 /** update columns of table "drawings" */
@@ -1607,6 +1824,8 @@ export enum Drawings_Update_Column {
   /** column name */
   AppState = 'appState',
   /** column name */
+  CollectionId = 'collectionId',
+  /** column name */
   CreatedAt = 'createdAt',
   /** column name */
   Elements = 'elements',
@@ -1615,9 +1834,7 @@ export enum Drawings_Update_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  UpdatedAt = 'updatedAt',
-  /** column name */
-  WorkspaceId = 'workspaceId'
+  UpdatedAt = 'updatedAt'
 }
 
 
@@ -1647,12 +1864,20 @@ export type Jsonb_Comparison_Exp = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** delete single row from the table: "collections" */
+  deleteCollection?: Maybe<Collections>;
+  /** delete data from the table: "collections" */
+  deleteCollections?: Maybe<Collections_Mutation_Response>;
   /** delete single row from the table: "drawings" */
   deleteDrawing?: Maybe<Drawings>;
   /** delete data from the table: "drawings" */
   deleteDrawings?: Maybe<Drawings_Mutation_Response>;
   /** delete single row from the table: "workspaces" */
   deleteWorkspace?: Maybe<Workspaces>;
+  /** delete single row from the table: "workspace_memebers" */
+  deleteWorkspaceMember?: Maybe<WorkspaceMembers>;
+  /** delete data from the table: "workspace_memebers" */
+  deleteWorkspaceMembers?: Maybe<WorkspaceMembers_Mutation_Response>;
   /** delete data from the table: "workspaces" */
   deleteWorkspaces?: Maybe<Workspaces_Mutation_Response>;
   /** delete data from the table: "auth.account_providers" */
@@ -1683,16 +1908,20 @@ export type Mutation_Root = {
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
   delete_users_by_pk?: Maybe<Users>;
-  /** delete data from the table: "workspace_memebers" */
-  delete_workspace_memebers?: Maybe<Workspace_Memebers_Mutation_Response>;
-  /** delete single row from the table: "workspace_memebers" */
-  delete_workspace_memebers_by_pk?: Maybe<Workspace_Memebers>;
+  /** insert a single row into the table: "collections" */
+  insertCollection?: Maybe<Collections>;
+  /** insert data into the table: "collections" */
+  insertCollections?: Maybe<Collections_Mutation_Response>;
   /** insert a single row into the table: "drawings" */
   insertDrawing?: Maybe<Drawings>;
   /** insert data into the table: "drawings" */
   insertDrawings?: Maybe<Drawings_Mutation_Response>;
   /** insert a single row into the table: "workspaces" */
   insertWorkspace?: Maybe<Workspaces>;
+  /** insert a single row into the table: "workspace_memebers" */
+  insertWorkspaceMember?: Maybe<WorkspaceMembers>;
+  /** insert data into the table: "workspace_memebers" */
+  insertWorkspaceMembers?: Maybe<WorkspaceMembers_Mutation_Response>;
   /** insert data into the table: "workspaces" */
   insertWorkspaces?: Maybe<Workspaces_Mutation_Response>;
   /** insert data into the table: "auth.account_providers" */
@@ -1723,16 +1952,20 @@ export type Mutation_Root = {
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
   insert_users_one?: Maybe<Users>;
-  /** insert data into the table: "workspace_memebers" */
-  insert_workspace_memebers?: Maybe<Workspace_Memebers_Mutation_Response>;
-  /** insert a single row into the table: "workspace_memebers" */
-  insert_workspace_memebers_one?: Maybe<Workspace_Memebers>;
+  /** update single row of the table: "collections" */
+  updateCollection?: Maybe<Collections>;
+  /** update data of the table: "collections" */
+  updateCollections?: Maybe<Collections_Mutation_Response>;
   /** update single row of the table: "drawings" */
   updateDrawing?: Maybe<Drawings>;
   /** update data of the table: "drawings" */
   updateDrawings?: Maybe<Drawings_Mutation_Response>;
   /** update single row of the table: "workspaces" */
   updateWorkspace?: Maybe<Workspaces>;
+  /** update single row of the table: "workspace_memebers" */
+  updateWorkspaceMember?: Maybe<WorkspaceMembers>;
+  /** update data of the table: "workspace_memebers" */
+  updateWorkspaceMembers?: Maybe<WorkspaceMembers_Mutation_Response>;
   /** update data of the table: "workspaces" */
   updateWorkspaces?: Maybe<Workspaces_Mutation_Response>;
   /** update data of the table: "auth.account_providers" */
@@ -1763,10 +1996,18 @@ export type Mutation_Root = {
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
   update_users_by_pk?: Maybe<Users>;
-  /** update data of the table: "workspace_memebers" */
-  update_workspace_memebers?: Maybe<Workspace_Memebers_Mutation_Response>;
-  /** update single row of the table: "workspace_memebers" */
-  update_workspace_memebers_by_pk?: Maybe<Workspace_Memebers>;
+};
+
+
+/** mutation root */
+export type Mutation_RootDeleteCollectionArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDeleteCollectionsArgs = {
+  where: Collections_Bool_Exp;
 };
 
 
@@ -1785,6 +2026,18 @@ export type Mutation_RootDeleteDrawingsArgs = {
 /** mutation root */
 export type Mutation_RootDeleteWorkspaceArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDeleteWorkspaceMemberArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDeleteWorkspaceMembersArgs = {
+  where: WorkspaceMembers_Bool_Exp;
 };
 
 
@@ -1879,14 +2132,16 @@ export type Mutation_RootDelete_Users_By_PkArgs = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_Workspace_MemebersArgs = {
-  where: Workspace_Memebers_Bool_Exp;
+export type Mutation_RootInsertCollectionArgs = {
+  object: Collections_Insert_Input;
+  on_conflict?: Maybe<Collections_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Workspace_Memebers_By_PkArgs = {
-  id: Scalars['uuid'];
+export type Mutation_RootInsertCollectionsArgs = {
+  objects: Array<Collections_Insert_Input>;
+  on_conflict?: Maybe<Collections_On_Conflict>;
 };
 
 
@@ -1908,6 +2163,20 @@ export type Mutation_RootInsertDrawingsArgs = {
 export type Mutation_RootInsertWorkspaceArgs = {
   object: Workspaces_Insert_Input;
   on_conflict?: Maybe<Workspaces_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsertWorkspaceMemberArgs = {
+  object: WorkspaceMembers_Insert_Input;
+  on_conflict?: Maybe<WorkspaceMembers_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsertWorkspaceMembersArgs = {
+  objects: Array<WorkspaceMembers_Insert_Input>;
+  on_conflict?: Maybe<WorkspaceMembers_On_Conflict>;
 };
 
 
@@ -2017,16 +2286,16 @@ export type Mutation_RootInsert_Users_OneArgs = {
 
 
 /** mutation root */
-export type Mutation_RootInsert_Workspace_MemebersArgs = {
-  objects: Array<Workspace_Memebers_Insert_Input>;
-  on_conflict?: Maybe<Workspace_Memebers_On_Conflict>;
+export type Mutation_RootUpdateCollectionArgs = {
+  _set?: Maybe<Collections_Set_Input>;
+  pk_columns: Collections_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Workspace_Memebers_OneArgs = {
-  object: Workspace_Memebers_Insert_Input;
-  on_conflict?: Maybe<Workspace_Memebers_On_Conflict>;
+export type Mutation_RootUpdateCollectionsArgs = {
+  _set?: Maybe<Collections_Set_Input>;
+  where: Collections_Bool_Exp;
 };
 
 
@@ -2058,6 +2327,20 @@ export type Mutation_RootUpdateDrawingsArgs = {
 export type Mutation_RootUpdateWorkspaceArgs = {
   _set?: Maybe<Workspaces_Set_Input>;
   pk_columns: Workspaces_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateWorkspaceMemberArgs = {
+  _set?: Maybe<WorkspaceMembers_Set_Input>;
+  pk_columns: WorkspaceMembers_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateWorkspaceMembersArgs = {
+  _set?: Maybe<WorkspaceMembers_Set_Input>;
+  where: WorkspaceMembers_Bool_Exp;
 };
 
 
@@ -2175,20 +2458,6 @@ export type Mutation_RootUpdate_Users_By_PkArgs = {
   pk_columns: Users_Pk_Columns_Input;
 };
 
-
-/** mutation root */
-export type Mutation_RootUpdate_Workspace_MemebersArgs = {
-  _set?: Maybe<Workspace_Memebers_Set_Input>;
-  where: Workspace_Memebers_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Workspace_Memebers_By_PkArgs = {
-  _set?: Maybe<Workspace_Memebers_Set_Input>;
-  pk_columns: Workspace_Memebers_Pk_Columns_Input;
-};
-
 /** column ordering options */
 export enum Order_By {
   /** in ascending order, nulls last */
@@ -2243,6 +2512,12 @@ export type Query_Root = {
   auth_roles_aggregate: Auth_Roles_Aggregate;
   /** fetch data from the table: "auth.roles" using primary key columns */
   auth_roles_by_pk?: Maybe<Auth_Roles>;
+  /** fetch data from the table: "collections" using primary key columns */
+  collection?: Maybe<Collections>;
+  /** fetch data from the table: "collections" */
+  collections: Array<Collections>;
+  /** An aggregate relationship */
+  collections_aggregate: Collections_Aggregate;
   /** fetch data from the table: "drawings" using primary key columns */
   drawing?: Maybe<Drawings>;
   /** An array relationship */
@@ -2257,12 +2532,12 @@ export type Query_Root = {
   users_by_pk?: Maybe<Users>;
   /** fetch data from the table: "workspaces" using primary key columns */
   workspace?: Maybe<Workspaces>;
-  /** An array relationship */
-  workspace_memebers: Array<Workspace_Memebers>;
-  /** An aggregate relationship */
-  workspace_memebers_aggregate: Workspace_Memebers_Aggregate;
   /** fetch data from the table: "workspace_memebers" using primary key columns */
-  workspace_memebers_by_pk?: Maybe<Workspace_Memebers>;
+  workspaceMember?: Maybe<WorkspaceMembers>;
+  /** fetch data from the table: "workspace_memebers" */
+  workspaceMembers: Array<WorkspaceMembers>;
+  /** fetch aggregated fields from the table: "workspace_memebers" */
+  workspaceMembers_aggregate: WorkspaceMembers_Aggregate;
   /** An array relationship */
   workspaces: Array<Workspaces>;
   /** An aggregate relationship */
@@ -2408,6 +2683,29 @@ export type Query_RootAuth_Roles_By_PkArgs = {
 };
 
 
+export type Query_RootCollectionArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootCollectionsArgs = {
+  distinct_on?: Maybe<Array<Collections_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Collections_Order_By>>;
+  where?: Maybe<Collections_Bool_Exp>;
+};
+
+
+export type Query_RootCollections_AggregateArgs = {
+  distinct_on?: Maybe<Array<Collections_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Collections_Order_By>>;
+  where?: Maybe<Collections_Bool_Exp>;
+};
+
+
 export type Query_RootDrawingArgs = {
   id: Scalars['uuid'];
 };
@@ -2459,26 +2757,26 @@ export type Query_RootWorkspaceArgs = {
 };
 
 
-export type Query_RootWorkspace_MemebersArgs = {
-  distinct_on?: Maybe<Array<Workspace_Memebers_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Workspace_Memebers_Order_By>>;
-  where?: Maybe<Workspace_Memebers_Bool_Exp>;
-};
-
-
-export type Query_RootWorkspace_Memebers_AggregateArgs = {
-  distinct_on?: Maybe<Array<Workspace_Memebers_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Workspace_Memebers_Order_By>>;
-  where?: Maybe<Workspace_Memebers_Bool_Exp>;
-};
-
-
-export type Query_RootWorkspace_Memebers_By_PkArgs = {
+export type Query_RootWorkspaceMemberArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type Query_RootWorkspaceMembersArgs = {
+  distinct_on?: Maybe<Array<WorkspaceMembers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<WorkspaceMembers_Order_By>>;
+  where?: Maybe<WorkspaceMembers_Bool_Exp>;
+};
+
+
+export type Query_RootWorkspaceMembers_AggregateArgs = {
+  distinct_on?: Maybe<Array<WorkspaceMembers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<WorkspaceMembers_Order_By>>;
+  where?: Maybe<WorkspaceMembers_Bool_Exp>;
 };
 
 
@@ -2537,6 +2835,12 @@ export type Subscription_Root = {
   auth_roles_aggregate: Auth_Roles_Aggregate;
   /** fetch data from the table: "auth.roles" using primary key columns */
   auth_roles_by_pk?: Maybe<Auth_Roles>;
+  /** fetch data from the table: "collections" using primary key columns */
+  collection?: Maybe<Collections>;
+  /** fetch data from the table: "collections" */
+  collections: Array<Collections>;
+  /** An aggregate relationship */
+  collections_aggregate: Collections_Aggregate;
   /** fetch data from the table: "drawings" using primary key columns */
   drawing?: Maybe<Drawings>;
   /** An array relationship */
@@ -2551,12 +2855,12 @@ export type Subscription_Root = {
   users_by_pk?: Maybe<Users>;
   /** fetch data from the table: "workspaces" using primary key columns */
   workspace?: Maybe<Workspaces>;
-  /** An array relationship */
-  workspace_memebers: Array<Workspace_Memebers>;
-  /** An aggregate relationship */
-  workspace_memebers_aggregate: Workspace_Memebers_Aggregate;
   /** fetch data from the table: "workspace_memebers" using primary key columns */
-  workspace_memebers_by_pk?: Maybe<Workspace_Memebers>;
+  workspaceMember?: Maybe<WorkspaceMembers>;
+  /** fetch data from the table: "workspace_memebers" */
+  workspaceMembers: Array<WorkspaceMembers>;
+  /** fetch aggregated fields from the table: "workspace_memebers" */
+  workspaceMembers_aggregate: WorkspaceMembers_Aggregate;
   /** An array relationship */
   workspaces: Array<Workspaces>;
   /** An aggregate relationship */
@@ -2702,6 +3006,29 @@ export type Subscription_RootAuth_Roles_By_PkArgs = {
 };
 
 
+export type Subscription_RootCollectionArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootCollectionsArgs = {
+  distinct_on?: Maybe<Array<Collections_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Collections_Order_By>>;
+  where?: Maybe<Collections_Bool_Exp>;
+};
+
+
+export type Subscription_RootCollections_AggregateArgs = {
+  distinct_on?: Maybe<Array<Collections_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Collections_Order_By>>;
+  where?: Maybe<Collections_Bool_Exp>;
+};
+
+
 export type Subscription_RootDrawingArgs = {
   id: Scalars['uuid'];
 };
@@ -2753,26 +3080,26 @@ export type Subscription_RootWorkspaceArgs = {
 };
 
 
-export type Subscription_RootWorkspace_MemebersArgs = {
-  distinct_on?: Maybe<Array<Workspace_Memebers_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Workspace_Memebers_Order_By>>;
-  where?: Maybe<Workspace_Memebers_Bool_Exp>;
-};
-
-
-export type Subscription_RootWorkspace_Memebers_AggregateArgs = {
-  distinct_on?: Maybe<Array<Workspace_Memebers_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Workspace_Memebers_Order_By>>;
-  where?: Maybe<Workspace_Memebers_Bool_Exp>;
-};
-
-
-export type Subscription_RootWorkspace_Memebers_By_PkArgs = {
+export type Subscription_RootWorkspaceMemberArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootWorkspaceMembersArgs = {
+  distinct_on?: Maybe<Array<WorkspaceMembers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<WorkspaceMembers_Order_By>>;
+  where?: Maybe<WorkspaceMembers_Bool_Exp>;
+};
+
+
+export type Subscription_RootWorkspaceMembers_AggregateArgs = {
+  distinct_on?: Maybe<Array<WorkspaceMembers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<WorkspaceMembers_Order_By>>;
+  where?: Maybe<WorkspaceMembers_Bool_Exp>;
 };
 
 
@@ -2818,9 +3145,9 @@ export type Users = {
   id: Scalars['uuid'];
   updated_at: Scalars['timestamptz'];
   /** An array relationship */
-  workspace_memebers: Array<Workspace_Memebers>;
+  workspace_memebers: Array<WorkspaceMembers>;
   /** An aggregate relationship */
-  workspace_memebers_aggregate: Workspace_Memebers_Aggregate;
+  workspace_memebers_aggregate: WorkspaceMembers_Aggregate;
   /** An array relationship */
   workspaces: Array<Workspaces>;
   /** An aggregate relationship */
@@ -2830,21 +3157,21 @@ export type Users = {
 
 /** columns and relationships of "users" */
 export type UsersWorkspace_MemebersArgs = {
-  distinct_on?: Maybe<Array<Workspace_Memebers_Select_Column>>;
+  distinct_on?: Maybe<Array<WorkspaceMembers_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Workspace_Memebers_Order_By>>;
-  where?: Maybe<Workspace_Memebers_Bool_Exp>;
+  order_by?: Maybe<Array<WorkspaceMembers_Order_By>>;
+  where?: Maybe<WorkspaceMembers_Bool_Exp>;
 };
 
 
 /** columns and relationships of "users" */
 export type UsersWorkspace_Memebers_AggregateArgs = {
-  distinct_on?: Maybe<Array<Workspace_Memebers_Select_Column>>;
+  distinct_on?: Maybe<Array<WorkspaceMembers_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Workspace_Memebers_Order_By>>;
-  where?: Maybe<Workspace_Memebers_Bool_Exp>;
+  order_by?: Maybe<Array<WorkspaceMembers_Order_By>>;
+  where?: Maybe<WorkspaceMembers_Bool_Exp>;
 };
 
 
@@ -2900,7 +3227,7 @@ export type Users_Bool_Exp = {
   display_name?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   updated_at?: Maybe<Timestamptz_Comparison_Exp>;
-  workspace_memebers?: Maybe<Workspace_Memebers_Bool_Exp>;
+  workspace_memebers?: Maybe<WorkspaceMembers_Bool_Exp>;
   workspaces?: Maybe<Workspaces_Bool_Exp>;
 };
 
@@ -2918,7 +3245,7 @@ export type Users_Insert_Input = {
   display_name?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
-  workspace_memebers?: Maybe<Workspace_Memebers_Arr_Rel_Insert_Input>;
+  workspace_memebers?: Maybe<WorkspaceMembers_Arr_Rel_Insert_Input>;
   workspaces?: Maybe<Workspaces_Arr_Rel_Insert_Input>;
 };
 
@@ -2973,7 +3300,7 @@ export type Users_Order_By = {
   display_name?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
-  workspace_memebers_aggregate?: Maybe<Workspace_Memebers_Aggregate_Order_By>;
+  workspace_memebers_aggregate?: Maybe<WorkspaceMembers_Aggregate_Order_By>;
   workspaces_aggregate?: Maybe<Workspaces_Aggregate_Order_By>;
 };
 
@@ -3034,73 +3361,73 @@ export type Uuid_Comparison_Exp = {
 };
 
 /** columns and relationships of "workspace_memebers" */
-export type Workspace_Memebers = {
-  __typename?: 'workspace_memebers';
+export type WorkspaceMembers = {
+  __typename?: 'workspaceMembers';
   createdAt: Scalars['timestamptz'];
   id: Scalars['uuid'];
   /** An object relationship */
   member: Users;
   memberUserId: Scalars['uuid'];
   type: Scalars['String'];
-  updated_at: Scalars['timestamptz'];
+  updatedAt: Scalars['timestamptz'];
   /** An object relationship */
   workspace: Workspaces;
   workspaceId: Scalars['uuid'];
 };
 
 /** aggregated selection of "workspace_memebers" */
-export type Workspace_Memebers_Aggregate = {
-  __typename?: 'workspace_memebers_aggregate';
-  aggregate?: Maybe<Workspace_Memebers_Aggregate_Fields>;
-  nodes: Array<Workspace_Memebers>;
+export type WorkspaceMembers_Aggregate = {
+  __typename?: 'workspaceMembers_aggregate';
+  aggregate?: Maybe<WorkspaceMembers_Aggregate_Fields>;
+  nodes: Array<WorkspaceMembers>;
 };
 
 /** aggregate fields of "workspace_memebers" */
-export type Workspace_Memebers_Aggregate_Fields = {
-  __typename?: 'workspace_memebers_aggregate_fields';
+export type WorkspaceMembers_Aggregate_Fields = {
+  __typename?: 'workspaceMembers_aggregate_fields';
   count: Scalars['Int'];
-  max?: Maybe<Workspace_Memebers_Max_Fields>;
-  min?: Maybe<Workspace_Memebers_Min_Fields>;
+  max?: Maybe<WorkspaceMembers_Max_Fields>;
+  min?: Maybe<WorkspaceMembers_Min_Fields>;
 };
 
 
 /** aggregate fields of "workspace_memebers" */
-export type Workspace_Memebers_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Workspace_Memebers_Select_Column>>;
+export type WorkspaceMembers_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<WorkspaceMembers_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "workspace_memebers" */
-export type Workspace_Memebers_Aggregate_Order_By = {
+export type WorkspaceMembers_Aggregate_Order_By = {
   count?: Maybe<Order_By>;
-  max?: Maybe<Workspace_Memebers_Max_Order_By>;
-  min?: Maybe<Workspace_Memebers_Min_Order_By>;
+  max?: Maybe<WorkspaceMembers_Max_Order_By>;
+  min?: Maybe<WorkspaceMembers_Min_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "workspace_memebers" */
-export type Workspace_Memebers_Arr_Rel_Insert_Input = {
-  data: Array<Workspace_Memebers_Insert_Input>;
+export type WorkspaceMembers_Arr_Rel_Insert_Input = {
+  data: Array<WorkspaceMembers_Insert_Input>;
   /** on conflict condition */
-  on_conflict?: Maybe<Workspace_Memebers_On_Conflict>;
+  on_conflict?: Maybe<WorkspaceMembers_On_Conflict>;
 };
 
 /** Boolean expression to filter rows from the table "workspace_memebers". All fields are combined with a logical 'AND'. */
-export type Workspace_Memebers_Bool_Exp = {
-  _and?: Maybe<Array<Workspace_Memebers_Bool_Exp>>;
-  _not?: Maybe<Workspace_Memebers_Bool_Exp>;
-  _or?: Maybe<Array<Workspace_Memebers_Bool_Exp>>;
+export type WorkspaceMembers_Bool_Exp = {
+  _and?: Maybe<Array<WorkspaceMembers_Bool_Exp>>;
+  _not?: Maybe<WorkspaceMembers_Bool_Exp>;
+  _or?: Maybe<Array<WorkspaceMembers_Bool_Exp>>;
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   member?: Maybe<Users_Bool_Exp>;
   memberUserId?: Maybe<Uuid_Comparison_Exp>;
   type?: Maybe<String_Comparison_Exp>;
-  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+  updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
   workspace?: Maybe<Workspaces_Bool_Exp>;
   workspaceId?: Maybe<Uuid_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "workspace_memebers" */
-export enum Workspace_Memebers_Constraint {
+export enum WorkspaceMembers_Constraint {
   /** unique or primary key constraint */
   WorkspaceMemebersPkey = 'workspace_memebers_pkey',
   /** unique or primary key constraint */
@@ -3108,94 +3435,94 @@ export enum Workspace_Memebers_Constraint {
 }
 
 /** input type for inserting data into table "workspace_memebers" */
-export type Workspace_Memebers_Insert_Input = {
+export type WorkspaceMembers_Insert_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   member?: Maybe<Users_Obj_Rel_Insert_Input>;
   memberUserId?: Maybe<Scalars['uuid']>;
   type?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   workspace?: Maybe<Workspaces_Obj_Rel_Insert_Input>;
   workspaceId?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate max on columns */
-export type Workspace_Memebers_Max_Fields = {
-  __typename?: 'workspace_memebers_max_fields';
+export type WorkspaceMembers_Max_Fields = {
+  __typename?: 'workspaceMembers_max_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   memberUserId?: Maybe<Scalars['uuid']>;
   type?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   workspaceId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "workspace_memebers" */
-export type Workspace_Memebers_Max_Order_By = {
+export type WorkspaceMembers_Max_Order_By = {
   createdAt?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   memberUserId?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
   workspaceId?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
-export type Workspace_Memebers_Min_Fields = {
-  __typename?: 'workspace_memebers_min_fields';
+export type WorkspaceMembers_Min_Fields = {
+  __typename?: 'workspaceMembers_min_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   memberUserId?: Maybe<Scalars['uuid']>;
   type?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   workspaceId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "workspace_memebers" */
-export type Workspace_Memebers_Min_Order_By = {
+export type WorkspaceMembers_Min_Order_By = {
   createdAt?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   memberUserId?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
   workspaceId?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "workspace_memebers" */
-export type Workspace_Memebers_Mutation_Response = {
-  __typename?: 'workspace_memebers_mutation_response';
+export type WorkspaceMembers_Mutation_Response = {
+  __typename?: 'workspaceMembers_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
-  returning: Array<Workspace_Memebers>;
+  returning: Array<WorkspaceMembers>;
 };
 
 /** on conflict condition type for table "workspace_memebers" */
-export type Workspace_Memebers_On_Conflict = {
-  constraint: Workspace_Memebers_Constraint;
-  update_columns?: Array<Workspace_Memebers_Update_Column>;
-  where?: Maybe<Workspace_Memebers_Bool_Exp>;
+export type WorkspaceMembers_On_Conflict = {
+  constraint: WorkspaceMembers_Constraint;
+  update_columns?: Array<WorkspaceMembers_Update_Column>;
+  where?: Maybe<WorkspaceMembers_Bool_Exp>;
 };
 
 /** Ordering options when selecting data from "workspace_memebers". */
-export type Workspace_Memebers_Order_By = {
+export type WorkspaceMembers_Order_By = {
   createdAt?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   member?: Maybe<Users_Order_By>;
   memberUserId?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
   workspace?: Maybe<Workspaces_Order_By>;
   workspaceId?: Maybe<Order_By>;
 };
 
-/** primary key columns input for table: workspace_memebers */
-export type Workspace_Memebers_Pk_Columns_Input = {
+/** primary key columns input for table: workspaceMembers */
+export type WorkspaceMembers_Pk_Columns_Input = {
   id: Scalars['uuid'];
 };
 
 /** select columns of table "workspace_memebers" */
-export enum Workspace_Memebers_Select_Column {
+export enum WorkspaceMembers_Select_Column {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -3205,23 +3532,23 @@ export enum Workspace_Memebers_Select_Column {
   /** column name */
   Type = 'type',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updatedAt',
   /** column name */
   WorkspaceId = 'workspaceId'
 }
 
 /** input type for updating data in table "workspace_memebers" */
-export type Workspace_Memebers_Set_Input = {
+export type WorkspaceMembers_Set_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   memberUserId?: Maybe<Scalars['uuid']>;
   type?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   workspaceId?: Maybe<Scalars['uuid']>;
 };
 
 /** update columns of table "workspace_memebers" */
-export enum Workspace_Memebers_Update_Column {
+export enum WorkspaceMembers_Update_Column {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -3231,7 +3558,7 @@ export enum Workspace_Memebers_Update_Column {
   /** column name */
   Type = 'type',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updatedAt',
   /** column name */
   WorkspaceId = 'workspaceId'
 }
@@ -3239,11 +3566,11 @@ export enum Workspace_Memebers_Update_Column {
 /** columns and relationships of "workspaces" */
 export type Workspaces = {
   __typename?: 'workspaces';
-  createdAt: Scalars['timestamptz'];
-  /** An array relationship */
-  drawings: Array<Drawings>;
+  /** fetch data from the table: "collections" */
+  collections: Array<Collections>;
   /** An aggregate relationship */
-  drawings_aggregate: Drawings_Aggregate;
+  collections_aggregate: Collections_Aggregate;
+  createdAt: Scalars['timestamptz'];
   id: Scalars['uuid'];
   name: Scalars['String'];
   /** An object relationship */
@@ -3252,49 +3579,49 @@ export type Workspaces = {
   slug: Scalars['String'];
   updatedAt: Scalars['timestamptz'];
   /** An array relationship */
-  workspaceMemebers: Array<Workspace_Memebers>;
+  workspaceMemebers: Array<WorkspaceMembers>;
   /** An aggregate relationship */
-  workspaceMemebers_aggregate: Workspace_Memebers_Aggregate;
+  workspaceMemebers_aggregate: WorkspaceMembers_Aggregate;
 };
 
 
 /** columns and relationships of "workspaces" */
-export type WorkspacesDrawingsArgs = {
-  distinct_on?: Maybe<Array<Drawings_Select_Column>>;
+export type WorkspacesCollectionsArgs = {
+  distinct_on?: Maybe<Array<Collections_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Drawings_Order_By>>;
-  where?: Maybe<Drawings_Bool_Exp>;
+  order_by?: Maybe<Array<Collections_Order_By>>;
+  where?: Maybe<Collections_Bool_Exp>;
 };
 
 
 /** columns and relationships of "workspaces" */
-export type WorkspacesDrawings_AggregateArgs = {
-  distinct_on?: Maybe<Array<Drawings_Select_Column>>;
+export type WorkspacesCollections_AggregateArgs = {
+  distinct_on?: Maybe<Array<Collections_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Drawings_Order_By>>;
-  where?: Maybe<Drawings_Bool_Exp>;
+  order_by?: Maybe<Array<Collections_Order_By>>;
+  where?: Maybe<Collections_Bool_Exp>;
 };
 
 
 /** columns and relationships of "workspaces" */
 export type WorkspacesWorkspaceMemebersArgs = {
-  distinct_on?: Maybe<Array<Workspace_Memebers_Select_Column>>;
+  distinct_on?: Maybe<Array<WorkspaceMembers_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Workspace_Memebers_Order_By>>;
-  where?: Maybe<Workspace_Memebers_Bool_Exp>;
+  order_by?: Maybe<Array<WorkspaceMembers_Order_By>>;
+  where?: Maybe<WorkspaceMembers_Bool_Exp>;
 };
 
 
 /** columns and relationships of "workspaces" */
 export type WorkspacesWorkspaceMemebers_AggregateArgs = {
-  distinct_on?: Maybe<Array<Workspace_Memebers_Select_Column>>;
+  distinct_on?: Maybe<Array<WorkspaceMembers_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Workspace_Memebers_Order_By>>;
-  where?: Maybe<Workspace_Memebers_Bool_Exp>;
+  order_by?: Maybe<Array<WorkspaceMembers_Order_By>>;
+  where?: Maybe<WorkspaceMembers_Bool_Exp>;
 };
 
 /** aggregated selection of "workspaces" */
@@ -3338,15 +3665,15 @@ export type Workspaces_Bool_Exp = {
   _and?: Maybe<Array<Workspaces_Bool_Exp>>;
   _not?: Maybe<Workspaces_Bool_Exp>;
   _or?: Maybe<Array<Workspaces_Bool_Exp>>;
+  collections?: Maybe<Collections_Bool_Exp>;
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
-  drawings?: Maybe<Drawings_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   owner?: Maybe<Users_Bool_Exp>;
   ownerUserId?: Maybe<Uuid_Comparison_Exp>;
   slug?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
-  workspaceMemebers?: Maybe<Workspace_Memebers_Bool_Exp>;
+  workspaceMemebers?: Maybe<WorkspaceMembers_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "workspaces" */
@@ -3359,15 +3686,15 @@ export enum Workspaces_Constraint {
 
 /** input type for inserting data into table "workspaces" */
 export type Workspaces_Insert_Input = {
+  collections?: Maybe<Collections_Arr_Rel_Insert_Input>;
   createdAt?: Maybe<Scalars['timestamptz']>;
-  drawings?: Maybe<Drawings_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   owner?: Maybe<Users_Obj_Rel_Insert_Input>;
   ownerUserId?: Maybe<Scalars['uuid']>;
   slug?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
-  workspaceMemebers?: Maybe<Workspace_Memebers_Arr_Rel_Insert_Input>;
+  workspaceMemebers?: Maybe<WorkspaceMembers_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -3437,15 +3764,15 @@ export type Workspaces_On_Conflict = {
 
 /** Ordering options when selecting data from "workspaces". */
 export type Workspaces_Order_By = {
+  collections_aggregate?: Maybe<Collections_Aggregate_Order_By>;
   createdAt?: Maybe<Order_By>;
-  drawings_aggregate?: Maybe<Drawings_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   owner?: Maybe<Users_Order_By>;
   ownerUserId?: Maybe<Order_By>;
   slug?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
-  workspaceMemebers_aggregate?: Maybe<Workspace_Memebers_Aggregate_Order_By>;
+  workspaceMemebers_aggregate?: Maybe<WorkspaceMembers_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: workspaces */
@@ -3495,16 +3822,84 @@ export enum Workspaces_Update_Column {
   UpdatedAt = 'updatedAt'
 }
 
-export type GetDrawingFragmentsFragment = (
-  { __typename?: 'drawings' }
-  & Pick<Drawings, 'id' | 'name' | 'appState' | 'elements'>
-  & { workspace: (
-    { __typename?: 'workspaces' }
-    & Pick<Workspaces, 'id' | 'slug'>
+export type GetCollectionsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCollectionsQuery = (
+  { __typename?: 'query_root' }
+  & { collections: Array<(
+    { __typename?: 'collections' }
+    & Pick<Collections, 'id' | 'name'>
     & { drawings: Array<(
       { __typename?: 'drawings' }
       & Pick<Drawings, 'id' | 'name'>
     )> }
+  )> }
+);
+
+export type GetCollectionByIdQueryVariables = Exact<{
+  collectionId: Scalars['uuid'];
+}>;
+
+
+export type GetCollectionByIdQuery = (
+  { __typename?: 'query_root' }
+  & { collection?: Maybe<(
+    { __typename?: 'collections' }
+    & Pick<Collections, 'id' | 'name'>
+    & { drawings: Array<(
+      { __typename?: 'drawings' }
+      & Pick<Drawings, 'id' | 'name'>
+      & { collection: (
+        { __typename?: 'collections' }
+        & Pick<Collections, 'id'>
+        & { workspace: (
+          { __typename?: 'workspaces' }
+          & Pick<Workspaces, 'id' | 'slug'>
+        ) }
+      ) }
+    )> }
+  )> }
+);
+
+export type InsertCollectionMutationVariables = Exact<{
+  collection: Collections_Insert_Input;
+}>;
+
+
+export type InsertCollectionMutation = (
+  { __typename?: 'mutation_root' }
+  & { insertCollection?: Maybe<(
+    { __typename?: 'collections' }
+    & Pick<Collections, 'id'>
+    & { workspace: (
+      { __typename?: 'workspaces' }
+      & Pick<Workspaces, 'id' | 'slug'>
+    ) }
+  )> }
+);
+
+export type GetDrawingFragmentsFragment = (
+  { __typename?: 'drawings' }
+  & Pick<Drawings, 'id' | 'name' | 'appState' | 'elements'>
+  & { collection: (
+    { __typename?: 'collections' }
+    & Pick<Collections, 'id' | 'name'>
+    & { drawings: Array<(
+      { __typename?: 'drawings' }
+      & Pick<Drawings, 'id' | 'name'>
+    )>, workspace: (
+      { __typename?: 'workspaces' }
+      & Pick<Workspaces, 'id' | 'slug'>
+      & { collections: Array<(
+        { __typename?: 'collections' }
+        & Pick<Collections, 'id'>
+        & { drawings: Array<(
+          { __typename?: 'drawings' }
+          & Pick<Drawings, 'id' | 'name'>
+        )> }
+      )> }
+    ) }
   ) }
 );
 
@@ -3531,9 +3926,13 @@ export type InsertDrawingMutation = (
   & { insertDrawing?: Maybe<(
     { __typename?: 'drawings' }
     & Pick<Drawings, 'id'>
-    & { workspace: (
-      { __typename?: 'workspaces' }
-      & Pick<Workspaces, 'id' | 'slug'>
+    & { collection: (
+      { __typename?: 'collections' }
+      & Pick<Collections, 'id'>
+      & { workspace: (
+        { __typename?: 'workspaces' }
+        & Pick<Workspaces, 'id' | 'slug'>
+      ) }
     ) }
   )> }
 );
@@ -3573,9 +3972,20 @@ export type GetWorkspaceBySlugQuery = (
   & { workspaces: Array<(
     { __typename?: 'workspaces' }
     & Pick<Workspaces, 'id' | 'name' | 'slug'>
-    & { drawings: Array<(
-      { __typename?: 'drawings' }
-      & Pick<Drawings, 'id' | 'name' | 'createdAt' | 'updatedAt'>
+    & { collections: Array<(
+      { __typename?: 'collections' }
+      & Pick<Collections, 'id' | 'name'>
+      & { drawings: Array<(
+        { __typename?: 'drawings' }
+        & Pick<Drawings, 'id' | 'name' | 'createdAt' | 'updatedAt'>
+      )> }
+    )>, workspaceMemebers: Array<(
+      { __typename?: 'workspaceMembers' }
+      & Pick<WorkspaceMembers, 'id' | 'type'>
+      & { member: (
+        { __typename?: 'users' }
+        & Pick<Users, 'id' | 'display_name'>
+      ) }
     )> }
   )> }
 );
@@ -3599,9 +4009,32 @@ export const GetDrawingFragmentsFragmentDoc = gql`
   name
   appState
   elements
-  workspace {
+  collection {
     id
-    slug
+    name
+    drawings {
+      id
+      name
+    }
+    workspace {
+      id
+      slug
+      collections {
+        id
+        drawings {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetCollectionsDocument = gql`
+    query getCollections {
+  collections {
+    id
+    name
     drawings {
       id
       name
@@ -3609,6 +4042,117 @@ export const GetDrawingFragmentsFragmentDoc = gql`
   }
 }
     `;
+
+/**
+ * __useGetCollectionsQuery__
+ *
+ * To run a query within a React component, call `useGetCollectionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCollectionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCollectionsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetCollectionsQuery(baseOptions?: Apollo.QueryHookOptions<GetCollectionsQuery, GetCollectionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCollectionsQuery, GetCollectionsQueryVariables>(GetCollectionsDocument, options);
+      }
+export function useGetCollectionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCollectionsQuery, GetCollectionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCollectionsQuery, GetCollectionsQueryVariables>(GetCollectionsDocument, options);
+        }
+export type GetCollectionsQueryHookResult = ReturnType<typeof useGetCollectionsQuery>;
+export type GetCollectionsLazyQueryHookResult = ReturnType<typeof useGetCollectionsLazyQuery>;
+export type GetCollectionsQueryResult = Apollo.QueryResult<GetCollectionsQuery, GetCollectionsQueryVariables>;
+export const GetCollectionByIdDocument = gql`
+    query getCollectionById($collectionId: uuid!) {
+  collection(id: $collectionId) {
+    id
+    name
+    drawings {
+      id
+      name
+      collection {
+        id
+        workspace {
+          id
+          slug
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCollectionByIdQuery__
+ *
+ * To run a query within a React component, call `useGetCollectionByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCollectionByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCollectionByIdQuery({
+ *   variables: {
+ *      collectionId: // value for 'collectionId'
+ *   },
+ * });
+ */
+export function useGetCollectionByIdQuery(baseOptions: Apollo.QueryHookOptions<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>(GetCollectionByIdDocument, options);
+      }
+export function useGetCollectionByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>(GetCollectionByIdDocument, options);
+        }
+export type GetCollectionByIdQueryHookResult = ReturnType<typeof useGetCollectionByIdQuery>;
+export type GetCollectionByIdLazyQueryHookResult = ReturnType<typeof useGetCollectionByIdLazyQuery>;
+export type GetCollectionByIdQueryResult = Apollo.QueryResult<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>;
+export const InsertCollectionDocument = gql`
+    mutation insertCollection($collection: collections_insert_input!) {
+  insertCollection(object: $collection) {
+    id
+    workspace {
+      id
+      slug
+    }
+  }
+}
+    `;
+export type InsertCollectionMutationFn = Apollo.MutationFunction<InsertCollectionMutation, InsertCollectionMutationVariables>;
+
+/**
+ * __useInsertCollectionMutation__
+ *
+ * To run a mutation, you first call `useInsertCollectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertCollectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertCollectionMutation, { data, loading, error }] = useInsertCollectionMutation({
+ *   variables: {
+ *      collection: // value for 'collection'
+ *   },
+ * });
+ */
+export function useInsertCollectionMutation(baseOptions?: Apollo.MutationHookOptions<InsertCollectionMutation, InsertCollectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertCollectionMutation, InsertCollectionMutationVariables>(InsertCollectionDocument, options);
+      }
+export type InsertCollectionMutationHookResult = ReturnType<typeof useInsertCollectionMutation>;
+export type InsertCollectionMutationResult = Apollo.MutationResult<InsertCollectionMutation>;
+export type InsertCollectionMutationOptions = Apollo.BaseMutationOptions<InsertCollectionMutation, InsertCollectionMutationVariables>;
 export const GetDrawingDocument = gql`
     query getDrawing($drawingId: uuid!) {
   drawing(id: $drawingId) {
@@ -3648,9 +4192,12 @@ export const InsertDrawingDocument = gql`
     mutation insertDrawing($drawing: drawings_insert_input!) {
   insertDrawing(object: $drawing) {
     id
-    workspace {
+    collection {
       id
-      slug
+      workspace {
+        id
+        slug
+      }
     }
   }
 }
@@ -3757,11 +4304,23 @@ export const GetWorkspaceBySlugDocument = gql`
     id
     name
     slug
-    drawings {
+    collections {
       id
       name
-      createdAt
-      updatedAt
+      drawings {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+    }
+    workspaceMemebers {
+      id
+      type
+      member {
+        id
+        display_name
+      }
     }
   }
 }
