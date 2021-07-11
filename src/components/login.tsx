@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { nhost } from "utils/nhost";
+import { Button, TextField } from "./ui";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -23,22 +24,31 @@ export function Login() {
     history.push("/");
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button>Login</button>
-      </form>
+    <div className="container mx-auto max-w-screen-md">
+      <div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <TextField
+              type="email"
+              placeholder="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoFocus={true}
+            />
+          </div>
+          <div>
+            <TextField
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <Button type="submit">Login</Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -6,17 +6,23 @@ type TextFieldProps = {
   type: string;
   className?: string;
   disabled?: boolean;
+  placeholder?: string;
+  autoFocus?: boolean;
 };
 
 export function TextField(props: TextFieldProps) {
-  const { onChange, value, className, type } = props;
+  const { onChange, value, className, type, placeholder, autoFocus } = props;
 
-  const classes = classNames(
-    "rounded border shadow-md  font-bold px-3 py-2 ",
-    className
-  );
+  const classes = classNames("rounded border shadow-md px-3 py-2 ", className);
 
   return (
-    <input type={type} value={value} onChange={onChange} className={classes} />
+    <input
+      type={type}
+      value={value}
+      onChange={onChange}
+      className={classes}
+      placeholder={placeholder}
+      autoFocus={autoFocus}
+    />
   );
 }
