@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Switch } from "@headlessui/react";
 import { Button, TextField } from "components/ui";
 import {
   GetDrawingFragmentsFragment,
@@ -19,7 +18,7 @@ function DrawingSettingsDataLoaded({
   const [name, setName] = useState(drawing.name);
   const [isPublic, setIsPublic] = useState(drawing.isPublic);
 
-  const [updateDrawing, { loading, error }] = useUpdateDrawingMutation();
+  const [updateDrawing, { loading }] = useUpdateDrawingMutation();
 
   async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
