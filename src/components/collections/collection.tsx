@@ -36,6 +36,9 @@ export function Collection() {
       <div>
         <div>{collection.name}</div>
         <div className="grid grid-cols-6 space-x-3 my-8">
+          {collection.drawings.length === 0 && (
+            <div className="text-gray-600 italic">No drawings</div>
+          )}
           {collection.drawings.map((drawing) => {
             return (
               <div key={drawing.id}>
