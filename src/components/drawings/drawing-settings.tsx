@@ -79,15 +79,18 @@ export function DrawingSettings({ drawingId }: DrawingSettingsProps) {
     variables: {
       drawingId,
     },
+    fetchPolicy: "cache-and-network",
   });
+
+  console.log(data);
 
   if (error) {
     console.log(error);
     return <div>error</div>;
   }
 
-  if (!data || loading) {
-    return <div>loading</div>;
+  if (!data && loading) {
+    return <div>loading here?</div>;
   }
 
   if (!data || !data.drawing) {
