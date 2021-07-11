@@ -4330,6 +4330,9 @@ export function useGetCollectionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type GetCollectionsQueryHookResult = ReturnType<typeof useGetCollectionsQuery>;
 export type GetCollectionsLazyQueryHookResult = ReturnType<typeof useGetCollectionsLazyQuery>;
 export type GetCollectionsQueryResult = Apollo.QueryResult<GetCollectionsQuery, GetCollectionsQueryVariables>;
+export function refetchGetCollectionsQuery(variables?: GetCollectionsQueryVariables) {
+      return { query: GetCollectionsDocument, variables: variables }
+    }
 export const GetCollectionByIdDocument = gql`
     query getCollectionById($collectionId: uuid!) {
   collection(id: $collectionId) {
@@ -4377,6 +4380,9 @@ export function useGetCollectionByIdLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type GetCollectionByIdQueryHookResult = ReturnType<typeof useGetCollectionByIdQuery>;
 export type GetCollectionByIdLazyQueryHookResult = ReturnType<typeof useGetCollectionByIdLazyQuery>;
 export type GetCollectionByIdQueryResult = Apollo.QueryResult<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>;
+export function refetchGetCollectionByIdQuery(variables?: GetCollectionByIdQueryVariables) {
+      return { query: GetCollectionByIdDocument, variables: variables }
+    }
 export const InsertCollectionDocument = gql`
     mutation insertCollection($collection: collections_insert_input!) {
   insertCollection(object: $collection) {
@@ -4449,6 +4455,9 @@ export function useGetDrawingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type GetDrawingQueryHookResult = ReturnType<typeof useGetDrawingQuery>;
 export type GetDrawingLazyQueryHookResult = ReturnType<typeof useGetDrawingLazyQuery>;
 export type GetDrawingQueryResult = Apollo.QueryResult<GetDrawingQuery, GetDrawingQueryVariables>;
+export function refetchGetDrawingQuery(variables?: GetDrawingQueryVariables) {
+      return { query: GetDrawingDocument, variables: variables }
+    }
 export const InsertDrawingDocument = gql`
     mutation insertDrawing($drawing: drawings_insert_input!) {
   insertDrawing(object: $drawing) {
@@ -4559,6 +4568,9 @@ export function useGetPublicDrawingLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetPublicDrawingQueryHookResult = ReturnType<typeof useGetPublicDrawingQuery>;
 export type GetPublicDrawingLazyQueryHookResult = ReturnType<typeof useGetPublicDrawingLazyQuery>;
 export type GetPublicDrawingQueryResult = Apollo.QueryResult<GetPublicDrawingQuery, GetPublicDrawingQueryVariables>;
+export function refetchGetPublicDrawingQuery(variables?: GetPublicDrawingQueryVariables) {
+      return { query: GetPublicDrawingDocument, variables: variables }
+    }
 export const GetWorksapcesDocument = gql`
     query getWorksapces {
   workspaces {
@@ -4595,6 +4607,9 @@ export function useGetWorksapcesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetWorksapcesQueryHookResult = ReturnType<typeof useGetWorksapcesQuery>;
 export type GetWorksapcesLazyQueryHookResult = ReturnType<typeof useGetWorksapcesLazyQuery>;
 export type GetWorksapcesQueryResult = Apollo.QueryResult<GetWorksapcesQuery, GetWorksapcesQueryVariables>;
+export function refetchGetWorksapcesQuery(variables?: GetWorksapcesQueryVariables) {
+      return { query: GetWorksapcesDocument, variables: variables }
+    }
 export const GetWorkspaceBySlugDocument = gql`
     query getWorkspaceBySlug($workspaceSlug: String!) {
   workspaces(where: {slug: {_eq: $workspaceSlug}}) {
@@ -4650,6 +4665,9 @@ export function useGetWorkspaceBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type GetWorkspaceBySlugQueryHookResult = ReturnType<typeof useGetWorkspaceBySlugQuery>;
 export type GetWorkspaceBySlugLazyQueryHookResult = ReturnType<typeof useGetWorkspaceBySlugLazyQuery>;
 export type GetWorkspaceBySlugQueryResult = Apollo.QueryResult<GetWorkspaceBySlugQuery, GetWorkspaceBySlugQueryVariables>;
+export function refetchGetWorkspaceBySlugQuery(variables?: GetWorkspaceBySlugQueryVariables) {
+      return { query: GetWorkspaceBySlugDocument, variables: variables }
+    }
 export const InsertWorkspaceDocument = gql`
     mutation insertWorkspace($workspace: workspaces_insert_input!) {
   insertWorkspace(object: $workspace) {

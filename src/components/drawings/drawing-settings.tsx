@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, TextField } from "components/ui";
 import {
   GetDrawingFragmentsFragment,
+  refetchGetDrawingQuery,
   useGetDrawingQuery,
   useUpdateDrawingMutation,
 } from "__generated__/graphql";
@@ -31,6 +32,11 @@ function DrawingSettingsDataLoaded({
           isPublic,
         },
       },
+      refetchQueries: [
+        refetchGetDrawingQuery({
+          drawingId: drawing.id,
+        }),
+      ],
     });
   }
 
@@ -80,7 +86,7 @@ export function DrawingSettings({ drawingId }: DrawingSettingsProps) {
     return <div>error</div>;
   }
 
-  if (loading) {
+  if (!data || loading) {
     return <div>loading</div>;
   }
 
