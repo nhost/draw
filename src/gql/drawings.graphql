@@ -29,6 +29,7 @@ query getDrawing($drawingId: uuid!) {
     ...getDrawingFragments
   }
 }
+
 mutation insertDrawing($drawing: drawings_insert_input!) {
   insertDrawing(object: $drawing) {
     id

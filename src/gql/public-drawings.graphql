@@ -1,0 +1,12 @@
+fragment getPublicDrawingFragments on publicDrawings {
+  id
+  name
+  appState
+  elements
+}
+
+query getPublicDrawing($drawingId: uuid!) {
+  publicDrawings(where: { id: { _eq: $drawingId } }) {
+    ...getPublicDrawingFragments
+  }
+}

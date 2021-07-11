@@ -9,6 +9,7 @@ import { NhostAuthProvider } from "@nhost/react-auth";
 import { nhost } from "utils/nhost";
 import { AuthGate } from "components/auth-gate";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { PublicDrawing } from "components/public-drawings/public-drawing";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,6 +25,9 @@ ReactDOM.render(
             </Route>
             <Route exact path="/register">
               <div>registeer..</div>
+            </Route>
+            <Route exact path="/public/:drawingId">
+              <PublicDrawing />
             </Route>
             <Route path="/">
               <AuthGate>

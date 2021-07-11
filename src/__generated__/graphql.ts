@@ -1604,6 +1604,7 @@ export type Drawings = {
   createdAt: Scalars['timestamptz'];
   elements: Scalars['jsonb'];
   id: Scalars['uuid'];
+  is_public: Scalars['Boolean'];
   name: Scalars['String'];
   updatedAt: Scalars['timestamptz'];
 };
@@ -1673,6 +1674,7 @@ export type Drawings_Bool_Exp = {
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   elements?: Maybe<Jsonb_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  is_public?: Maybe<Boolean_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
 };
@@ -1709,6 +1711,7 @@ export type Drawings_Insert_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   elements?: Maybe<Scalars['jsonb']>;
   id?: Maybe<Scalars['uuid']>;
+  is_public?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
 };
@@ -1775,6 +1778,7 @@ export type Drawings_Order_By = {
   createdAt?: Maybe<Order_By>;
   elements?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  is_public?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
 };
@@ -1803,6 +1807,8 @@ export enum Drawings_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  IsPublic = 'is_public',
+  /** column name */
   Name = 'name',
   /** column name */
   UpdatedAt = 'updatedAt'
@@ -1815,6 +1821,7 @@ export type Drawings_Set_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   elements?: Maybe<Scalars['jsonb']>;
   id?: Maybe<Scalars['uuid']>;
+  is_public?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
 };
@@ -1831,6 +1838,8 @@ export enum Drawings_Update_Column {
   Elements = 'elements',
   /** column name */
   Id = 'id',
+  /** column name */
+  IsPublic = 'is_public',
   /** column name */
   Name = 'name',
   /** column name */
@@ -1904,6 +1913,8 @@ export type Mutation_Root = {
   delete_auth_roles?: Maybe<Auth_Roles_Mutation_Response>;
   /** delete single row from the table: "auth.roles" */
   delete_auth_roles_by_pk?: Maybe<Auth_Roles>;
+  /** delete data from the table: "public_drawings" */
+  delete_publicDrawings?: Maybe<PublicDrawings_Mutation_Response>;
   /** delete data from the table: "users" */
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
@@ -1948,6 +1959,10 @@ export type Mutation_Root = {
   insert_auth_roles?: Maybe<Auth_Roles_Mutation_Response>;
   /** insert a single row into the table: "auth.roles" */
   insert_auth_roles_one?: Maybe<Auth_Roles>;
+  /** insert data into the table: "public_drawings" */
+  insert_publicDrawings?: Maybe<PublicDrawings_Mutation_Response>;
+  /** insert a single row into the table: "public_drawings" */
+  insert_publicDrawings_one?: Maybe<PublicDrawings>;
   /** insert data into the table: "users" */
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
@@ -1992,6 +2007,8 @@ export type Mutation_Root = {
   update_auth_roles?: Maybe<Auth_Roles_Mutation_Response>;
   /** update single row of the table: "auth.roles" */
   update_auth_roles_by_pk?: Maybe<Auth_Roles>;
+  /** update data of the table: "public_drawings" */
+  update_publicDrawings?: Maybe<PublicDrawings_Mutation_Response>;
   /** update data of the table: "users" */
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
@@ -2116,6 +2133,12 @@ export type Mutation_RootDelete_Auth_RolesArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Auth_Roles_By_PkArgs = {
   role: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_PublicDrawingsArgs = {
+  where: PublicDrawings_Bool_Exp;
 };
 
 
@@ -2268,6 +2291,18 @@ export type Mutation_RootInsert_Auth_RolesArgs = {
 export type Mutation_RootInsert_Auth_Roles_OneArgs = {
   object: Auth_Roles_Insert_Input;
   on_conflict?: Maybe<Auth_Roles_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_PublicDrawingsArgs = {
+  objects: Array<PublicDrawings_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_PublicDrawings_OneArgs = {
+  object: PublicDrawings_Insert_Input;
 };
 
 
@@ -2446,6 +2481,18 @@ export type Mutation_RootUpdate_Auth_Roles_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_PublicDrawingsArgs = {
+  _append?: Maybe<PublicDrawings_Append_Input>;
+  _delete_at_path?: Maybe<PublicDrawings_Delete_At_Path_Input>;
+  _delete_elem?: Maybe<PublicDrawings_Delete_Elem_Input>;
+  _delete_key?: Maybe<PublicDrawings_Delete_Key_Input>;
+  _prepend?: Maybe<PublicDrawings_Prepend_Input>;
+  _set?: Maybe<PublicDrawings_Set_Input>;
+  where: PublicDrawings_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_UsersArgs = {
   _set?: Maybe<Users_Set_Input>;
   where: Users_Bool_Exp;
@@ -2473,6 +2520,149 @@ export enum Order_By {
   /** in descending order, nulls last */
   DescNullsLast = 'desc_nulls_last'
 }
+
+/** columns and relationships of "public_drawings" */
+export type PublicDrawings = {
+  __typename?: 'publicDrawings';
+  appState?: Maybe<Scalars['jsonb']>;
+  elements?: Maybe<Scalars['jsonb']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "public_drawings" */
+export type PublicDrawingsAppStateArgs = {
+  path?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "public_drawings" */
+export type PublicDrawingsElementsArgs = {
+  path?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "public_drawings" */
+export type PublicDrawings_Aggregate = {
+  __typename?: 'publicDrawings_aggregate';
+  aggregate?: Maybe<PublicDrawings_Aggregate_Fields>;
+  nodes: Array<PublicDrawings>;
+};
+
+/** aggregate fields of "public_drawings" */
+export type PublicDrawings_Aggregate_Fields = {
+  __typename?: 'publicDrawings_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<PublicDrawings_Max_Fields>;
+  min?: Maybe<PublicDrawings_Min_Fields>;
+};
+
+
+/** aggregate fields of "public_drawings" */
+export type PublicDrawings_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<PublicDrawings_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type PublicDrawings_Append_Input = {
+  appState?: Maybe<Scalars['jsonb']>;
+  elements?: Maybe<Scalars['jsonb']>;
+};
+
+/** Boolean expression to filter rows from the table "public_drawings". All fields are combined with a logical 'AND'. */
+export type PublicDrawings_Bool_Exp = {
+  _and?: Maybe<Array<PublicDrawings_Bool_Exp>>;
+  _not?: Maybe<PublicDrawings_Bool_Exp>;
+  _or?: Maybe<Array<PublicDrawings_Bool_Exp>>;
+  appState?: Maybe<Jsonb_Comparison_Exp>;
+  elements?: Maybe<Jsonb_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+};
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type PublicDrawings_Delete_At_Path_Input = {
+  appState?: Maybe<Array<Scalars['String']>>;
+  elements?: Maybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type PublicDrawings_Delete_Elem_Input = {
+  appState?: Maybe<Scalars['Int']>;
+  elements?: Maybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type PublicDrawings_Delete_Key_Input = {
+  appState?: Maybe<Scalars['String']>;
+  elements?: Maybe<Scalars['String']>;
+};
+
+/** input type for inserting data into table "public_drawings" */
+export type PublicDrawings_Insert_Input = {
+  appState?: Maybe<Scalars['jsonb']>;
+  elements?: Maybe<Scalars['jsonb']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type PublicDrawings_Max_Fields = {
+  __typename?: 'publicDrawings_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type PublicDrawings_Min_Fields = {
+  __typename?: 'publicDrawings_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "public_drawings" */
+export type PublicDrawings_Mutation_Response = {
+  __typename?: 'publicDrawings_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<PublicDrawings>;
+};
+
+/** Ordering options when selecting data from "public_drawings". */
+export type PublicDrawings_Order_By = {
+  appState?: Maybe<Order_By>;
+  elements?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type PublicDrawings_Prepend_Input = {
+  appState?: Maybe<Scalars['jsonb']>;
+  elements?: Maybe<Scalars['jsonb']>;
+};
+
+/** select columns of table "public_drawings" */
+export enum PublicDrawings_Select_Column {
+  /** column name */
+  AppState = 'appState',
+  /** column name */
+  Elements = 'elements',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** input type for updating data in table "public_drawings" */
+export type PublicDrawings_Set_Input = {
+  appState?: Maybe<Scalars['jsonb']>;
+  elements?: Maybe<Scalars['jsonb']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+};
 
 export type Query_Root = {
   __typename?: 'query_root';
@@ -2524,6 +2714,10 @@ export type Query_Root = {
   drawings: Array<Drawings>;
   /** An aggregate relationship */
   drawings_aggregate: Drawings_Aggregate;
+  /** fetch data from the table: "public_drawings" */
+  publicDrawings: Array<PublicDrawings>;
+  /** fetch aggregated fields from the table: "public_drawings" */
+  publicDrawings_aggregate: PublicDrawings_Aggregate;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -2729,6 +2923,24 @@ export type Query_RootDrawings_AggregateArgs = {
 };
 
 
+export type Query_RootPublicDrawingsArgs = {
+  distinct_on?: Maybe<Array<PublicDrawings_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PublicDrawings_Order_By>>;
+  where?: Maybe<PublicDrawings_Bool_Exp>;
+};
+
+
+export type Query_RootPublicDrawings_AggregateArgs = {
+  distinct_on?: Maybe<Array<PublicDrawings_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PublicDrawings_Order_By>>;
+  where?: Maybe<PublicDrawings_Bool_Exp>;
+};
+
+
 export type Query_RootUsersArgs = {
   distinct_on?: Maybe<Array<Users_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -2847,6 +3059,10 @@ export type Subscription_Root = {
   drawings: Array<Drawings>;
   /** An aggregate relationship */
   drawings_aggregate: Drawings_Aggregate;
+  /** fetch data from the table: "public_drawings" */
+  publicDrawings: Array<PublicDrawings>;
+  /** fetch aggregated fields from the table: "public_drawings" */
+  publicDrawings_aggregate: PublicDrawings_Aggregate;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -3049,6 +3265,24 @@ export type Subscription_RootDrawings_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Drawings_Order_By>>;
   where?: Maybe<Drawings_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublicDrawingsArgs = {
+  distinct_on?: Maybe<Array<PublicDrawings_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PublicDrawings_Order_By>>;
+  where?: Maybe<PublicDrawings_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublicDrawings_AggregateArgs = {
+  distinct_on?: Maybe<Array<PublicDrawings_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PublicDrawings_Order_By>>;
+  where?: Maybe<PublicDrawings_Bool_Exp>;
 };
 
 
@@ -3951,6 +4185,24 @@ export type UpdateDrawingMutation = (
   )> }
 );
 
+export type GetPublicDrawingFragmentsFragment = (
+  { __typename?: 'publicDrawings' }
+  & Pick<PublicDrawings, 'id' | 'name' | 'appState' | 'elements'>
+);
+
+export type GetPublicDrawingQueryVariables = Exact<{
+  drawingId: Scalars['uuid'];
+}>;
+
+
+export type GetPublicDrawingQuery = (
+  { __typename?: 'query_root' }
+  & { publicDrawings: Array<(
+    { __typename?: 'publicDrawings' }
+    & GetPublicDrawingFragmentsFragment
+  )> }
+);
+
 export type GetWorksapcesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4028,6 +4280,14 @@ export const GetDrawingFragmentsFragmentDoc = gql`
       }
     }
   }
+}
+    `;
+export const GetPublicDrawingFragmentsFragmentDoc = gql`
+    fragment getPublicDrawingFragments on publicDrawings {
+  id
+  name
+  appState
+  elements
 }
     `;
 export const GetCollectionsDocument = gql`
@@ -4262,6 +4522,41 @@ export function useUpdateDrawingMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateDrawingMutationHookResult = ReturnType<typeof useUpdateDrawingMutation>;
 export type UpdateDrawingMutationResult = Apollo.MutationResult<UpdateDrawingMutation>;
 export type UpdateDrawingMutationOptions = Apollo.BaseMutationOptions<UpdateDrawingMutation, UpdateDrawingMutationVariables>;
+export const GetPublicDrawingDocument = gql`
+    query getPublicDrawing($drawingId: uuid!) {
+  publicDrawings(where: {id: {_eq: $drawingId}}) {
+    ...getPublicDrawingFragments
+  }
+}
+    ${GetPublicDrawingFragmentsFragmentDoc}`;
+
+/**
+ * __useGetPublicDrawingQuery__
+ *
+ * To run a query within a React component, call `useGetPublicDrawingQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPublicDrawingQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPublicDrawingQuery({
+ *   variables: {
+ *      drawingId: // value for 'drawingId'
+ *   },
+ * });
+ */
+export function useGetPublicDrawingQuery(baseOptions: Apollo.QueryHookOptions<GetPublicDrawingQuery, GetPublicDrawingQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPublicDrawingQuery, GetPublicDrawingQueryVariables>(GetPublicDrawingDocument, options);
+      }
+export function useGetPublicDrawingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPublicDrawingQuery, GetPublicDrawingQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPublicDrawingQuery, GetPublicDrawingQueryVariables>(GetPublicDrawingDocument, options);
+        }
+export type GetPublicDrawingQueryHookResult = ReturnType<typeof useGetPublicDrawingQuery>;
+export type GetPublicDrawingLazyQueryHookResult = ReturnType<typeof useGetPublicDrawingLazyQuery>;
+export type GetPublicDrawingQueryResult = Apollo.QueryResult<GetPublicDrawingQuery, GetPublicDrawingQueryVariables>;
 export const GetWorksapcesDocument = gql`
     query getWorksapces {
   workspaces {
