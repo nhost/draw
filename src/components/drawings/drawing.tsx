@@ -100,7 +100,7 @@ export function Drawing() {
     return <div>error</div>;
   }
 
-  if (!data && loading) {
+  if (loading) {
     return <div>loading</div>;
   }
 

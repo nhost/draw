@@ -4499,7 +4499,7 @@ export const GetDrawingFragmentsFragmentDoc = gql`
   collection {
     id
     name
-    drawings {
+    drawings(order_by: {createdAt: asc}) {
       id
       name
     }
