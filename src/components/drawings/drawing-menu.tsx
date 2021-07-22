@@ -39,17 +39,19 @@ export function DrawingMenu() {
 
   return (
     <div>
-      <div className="my-2 text-2xl">
+      <div className="">
         <Link to={`/${drawing.collection.workspace.slug}`}>
-          {drawing.collection.workspace.slug}
+          <div className="py-2 px-3 text-2xl bg-gray-200">
+            {drawing.collection.workspace.slug}
+          </div>
         </Link>
       </div>
-      <div className="font-bold mt-8 mb-4">
+      <div className="">
         <Link to={`/${workspaceSlug}/${collectionId}`}>
-          <div className="flex items-center">
+          <div className="flex items-center font-bold mt-8 mb-4 px-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 mr-2"
               viewBox="0 0 20 20"
               fill="currentColor"
             >

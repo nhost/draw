@@ -34,7 +34,9 @@ export function Layout({ children }: LayoutProps) {
       <div className={classesLeft}>
         <div>
           <div>
-            <Link to={`/`}>Nhost - Draw</Link>
+            <Link to={`/`}>
+              <div className="py-2 px-3">Nhost - Draw</div>
+            </Link>
           </div>
           <div>
             <Switch>
@@ -49,7 +51,7 @@ export function Layout({ children }: LayoutProps) {
         </div>
         <div>
           <button
-            className="flex items-center w-full text-center py-3"
+            className="flex items-center w-full text-center py-3 bg-red-100 px-4 text-gray-600 hover:bg-red-300 transition-all duration-150 ease-in-out"
             onClick={() => nhost.auth.logout()}
           >
             Logout
@@ -58,12 +60,45 @@ export function Layout({ children }: LayoutProps) {
       </div>
       <div className={classesRight}>
         <div
-          className="absolute left-0 border rounded-full w-12 h-12 flex items-center justify-center top-2 z-50 bg-indigo-700 cursor-pointer"
+          className="absolute left-0 border rounded-full w-12 h-12 flex items-center justify-center top-2 border-gray-400 z-50 cursor-pointer bg-opacity-50"
           style={{
             transform: `translate(-25px, 0)`,
           }}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-        ></div>
+        >
+          {isMenuOpen && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+              />
+            </svg>
+          )}
+          {!isMenuOpen && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 5l7 7-7 7M5 5l7 7-7 7"
+              />
+            </svg>
+          )}
+        </div>
         {children}
       </div>
     </div>

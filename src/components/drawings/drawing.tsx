@@ -39,7 +39,7 @@ function DrawingDataLoaded({
     const elements = excalidrawRef.current.getSceneElements();
     const appState = excalidrawRef.current.getAppState();
 
-    await updateDrawing({
+    updateDrawing({
       variables: {
         drawingId: drawing.id,
         drawing: {
@@ -47,6 +47,8 @@ function DrawingDataLoaded({
           appState,
         },
       },
+    }).catch((error) => {
+      console.warn("unable to save drawing");
     });
   }
 

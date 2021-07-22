@@ -35,10 +35,12 @@ export function WorkspaceMenu() {
 
   return (
     <div>
-      <div className="my-2 text-2xl">
-        <Link to={`/${workspace.slug}`}>{workspace.name}</Link>
+      <div className="">
+        <Link to={`/${workspace.slug}`}>
+          <div className="py-2 px-3 text-2xl bg-gray-200">{workspace.slug}</div>
+        </Link>
       </div>
-      <div className="font-bold mt-8 mb-4">Collections</div>
+      <div className="font-bold mt-8 mb-4 ml-4">Collections</div>
       <div>
         {workspace.collections.map((collection) => {
           return (
