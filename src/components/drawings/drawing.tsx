@@ -103,7 +103,11 @@ export function Drawing() {
   }
 
   if (loading) {
-    return <div>loading</div>;
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div>loading..</div>
+      </div>
+    );
   }
 
   if (!data || !data.drawing) {
