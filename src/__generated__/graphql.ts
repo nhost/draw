@@ -1913,6 +1913,10 @@ export type Mutation_Root = {
   delete_auth_roles?: Maybe<Auth_Roles_Mutation_Response>;
   /** delete single row from the table: "auth.roles" */
   delete_auth_roles_by_pk?: Maybe<Auth_Roles>;
+  /** delete data from the table: "productImages" */
+  delete_productImages?: Maybe<ProductImages_Mutation_Response>;
+  /** delete single row from the table: "productImages" */
+  delete_productImages_by_pk?: Maybe<ProductImages>;
   /** delete data from the table: "public_drawings" */
   delete_publicDrawings?: Maybe<PublicDrawings_Mutation_Response>;
   /** delete data from the table: "users" */
@@ -1959,6 +1963,10 @@ export type Mutation_Root = {
   insert_auth_roles?: Maybe<Auth_Roles_Mutation_Response>;
   /** insert a single row into the table: "auth.roles" */
   insert_auth_roles_one?: Maybe<Auth_Roles>;
+  /** insert data into the table: "productImages" */
+  insert_productImages?: Maybe<ProductImages_Mutation_Response>;
+  /** insert a single row into the table: "productImages" */
+  insert_productImages_one?: Maybe<ProductImages>;
   /** insert data into the table: "public_drawings" */
   insert_publicDrawings?: Maybe<PublicDrawings_Mutation_Response>;
   /** insert a single row into the table: "public_drawings" */
@@ -2007,6 +2015,10 @@ export type Mutation_Root = {
   update_auth_roles?: Maybe<Auth_Roles_Mutation_Response>;
   /** update single row of the table: "auth.roles" */
   update_auth_roles_by_pk?: Maybe<Auth_Roles>;
+  /** update data of the table: "productImages" */
+  update_productImages?: Maybe<ProductImages_Mutation_Response>;
+  /** update single row of the table: "productImages" */
+  update_productImages_by_pk?: Maybe<ProductImages>;
   /** update data of the table: "public_drawings" */
   update_publicDrawings?: Maybe<PublicDrawings_Mutation_Response>;
   /** update data of the table: "users" */
@@ -2133,6 +2145,18 @@ export type Mutation_RootDelete_Auth_RolesArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Auth_Roles_By_PkArgs = {
   role: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_ProductImagesArgs = {
+  where: ProductImages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_ProductImages_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -2291,6 +2315,20 @@ export type Mutation_RootInsert_Auth_RolesArgs = {
 export type Mutation_RootInsert_Auth_Roles_OneArgs = {
   object: Auth_Roles_Insert_Input;
   on_conflict?: Maybe<Auth_Roles_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_ProductImagesArgs = {
+  objects: Array<ProductImages_Insert_Input>;
+  on_conflict?: Maybe<ProductImages_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_ProductImages_OneArgs = {
+  object: ProductImages_Insert_Input;
+  on_conflict?: Maybe<ProductImages_On_Conflict>;
 };
 
 
@@ -2481,6 +2519,20 @@ export type Mutation_RootUpdate_Auth_Roles_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_ProductImagesArgs = {
+  _set?: Maybe<ProductImages_Set_Input>;
+  where: ProductImages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_ProductImages_By_PkArgs = {
+  _set?: Maybe<ProductImages_Set_Input>;
+  pk_columns: ProductImages_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_PublicDrawingsArgs = {
   _append?: Maybe<PublicDrawings_Append_Input>;
   _delete_at_path?: Maybe<PublicDrawings_Delete_At_Path_Input>;
@@ -2519,6 +2571,130 @@ export enum Order_By {
   DescNullsFirst = 'desc_nulls_first',
   /** in descending order, nulls last */
   DescNullsLast = 'desc_nulls_last'
+}
+
+/** columns and relationships of "productImages" */
+export type ProductImages = {
+  __typename?: 'productImages';
+  fileid: Scalars['uuid'];
+  id: Scalars['uuid'];
+  userId: Scalars['uuid'];
+};
+
+/** aggregated selection of "productImages" */
+export type ProductImages_Aggregate = {
+  __typename?: 'productImages_aggregate';
+  aggregate?: Maybe<ProductImages_Aggregate_Fields>;
+  nodes: Array<ProductImages>;
+};
+
+/** aggregate fields of "productImages" */
+export type ProductImages_Aggregate_Fields = {
+  __typename?: 'productImages_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<ProductImages_Max_Fields>;
+  min?: Maybe<ProductImages_Min_Fields>;
+};
+
+
+/** aggregate fields of "productImages" */
+export type ProductImages_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<ProductImages_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "productImages". All fields are combined with a logical 'AND'. */
+export type ProductImages_Bool_Exp = {
+  _and?: Maybe<Array<ProductImages_Bool_Exp>>;
+  _not?: Maybe<ProductImages_Bool_Exp>;
+  _or?: Maybe<Array<ProductImages_Bool_Exp>>;
+  fileid?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  userId?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "productImages" */
+export enum ProductImages_Constraint {
+  /** unique or primary key constraint */
+  ProductImagesPkey = 'productImages_pkey'
+}
+
+/** input type for inserting data into table "productImages" */
+export type ProductImages_Insert_Input = {
+  fileid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type ProductImages_Max_Fields = {
+  __typename?: 'productImages_max_fields';
+  fileid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type ProductImages_Min_Fields = {
+  __typename?: 'productImages_min_fields';
+  fileid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "productImages" */
+export type ProductImages_Mutation_Response = {
+  __typename?: 'productImages_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ProductImages>;
+};
+
+/** on conflict condition type for table "productImages" */
+export type ProductImages_On_Conflict = {
+  constraint: ProductImages_Constraint;
+  update_columns?: Array<ProductImages_Update_Column>;
+  where?: Maybe<ProductImages_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "productImages". */
+export type ProductImages_Order_By = {
+  fileid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  userId?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: productImages */
+export type ProductImages_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "productImages" */
+export enum ProductImages_Select_Column {
+  /** column name */
+  Fileid = 'fileid',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "productImages" */
+export type ProductImages_Set_Input = {
+  fileid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "productImages" */
+export enum ProductImages_Update_Column {
+  /** column name */
+  Fileid = 'fileid',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UserId = 'userId'
 }
 
 /** columns and relationships of "public_drawings" */
@@ -2714,6 +2890,12 @@ export type Query_Root = {
   drawings: Array<Drawings>;
   /** An aggregate relationship */
   drawings_aggregate: Drawings_Aggregate;
+  /** fetch data from the table: "productImages" */
+  productImages: Array<ProductImages>;
+  /** fetch aggregated fields from the table: "productImages" */
+  productImages_aggregate: ProductImages_Aggregate;
+  /** fetch data from the table: "productImages" using primary key columns */
+  productImages_by_pk?: Maybe<ProductImages>;
   /** fetch data from the table: "public_drawings" */
   publicDrawings: Array<PublicDrawings>;
   /** fetch aggregated fields from the table: "public_drawings" */
@@ -2923,6 +3105,29 @@ export type Query_RootDrawings_AggregateArgs = {
 };
 
 
+export type Query_RootProductImagesArgs = {
+  distinct_on?: Maybe<Array<ProductImages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ProductImages_Order_By>>;
+  where?: Maybe<ProductImages_Bool_Exp>;
+};
+
+
+export type Query_RootProductImages_AggregateArgs = {
+  distinct_on?: Maybe<Array<ProductImages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ProductImages_Order_By>>;
+  where?: Maybe<ProductImages_Bool_Exp>;
+};
+
+
+export type Query_RootProductImages_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
 export type Query_RootPublicDrawingsArgs = {
   distinct_on?: Maybe<Array<PublicDrawings_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -3059,6 +3264,12 @@ export type Subscription_Root = {
   drawings: Array<Drawings>;
   /** An aggregate relationship */
   drawings_aggregate: Drawings_Aggregate;
+  /** fetch data from the table: "productImages" */
+  productImages: Array<ProductImages>;
+  /** fetch aggregated fields from the table: "productImages" */
+  productImages_aggregate: ProductImages_Aggregate;
+  /** fetch data from the table: "productImages" using primary key columns */
+  productImages_by_pk?: Maybe<ProductImages>;
   /** fetch data from the table: "public_drawings" */
   publicDrawings: Array<PublicDrawings>;
   /** fetch aggregated fields from the table: "public_drawings" */
@@ -3265,6 +3476,29 @@ export type Subscription_RootDrawings_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Drawings_Order_By>>;
   where?: Maybe<Drawings_Bool_Exp>;
+};
+
+
+export type Subscription_RootProductImagesArgs = {
+  distinct_on?: Maybe<Array<ProductImages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ProductImages_Order_By>>;
+  where?: Maybe<ProductImages_Bool_Exp>;
+};
+
+
+export type Subscription_RootProductImages_AggregateArgs = {
+  distinct_on?: Maybe<Array<ProductImages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ProductImages_Order_By>>;
+  where?: Maybe<ProductImages_Bool_Exp>;
+};
+
+
+export type Subscription_RootProductImages_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -3808,8 +4042,8 @@ export type Workspaces = {
   id: Scalars['uuid'];
   name: Scalars['String'];
   /** An object relationship */
-  owner: Users;
-  ownerUserId: Scalars['uuid'];
+  owner?: Maybe<Users>;
+  ownerUserId?: Maybe<Scalars['uuid']>;
   slug: Scalars['String'];
   updatedAt: Scalars['timestamptz'];
   /** An array relationship */
@@ -4089,7 +4323,7 @@ export type GetCollectionByIdQuery = (
         & Pick<Collections, 'id'>
         & { workspace: (
           { __typename?: 'workspaces' }
-          & Pick<Workspaces, 'id' | 'slug'>
+          & Pick<Workspaces, 'id' | 'slug' | 'name'>
         ) }
       ) }
     )> }
@@ -4346,6 +4580,7 @@ export const GetCollectionByIdDocument = gql`
         workspace {
           id
           slug
+          name
         }
       }
     }

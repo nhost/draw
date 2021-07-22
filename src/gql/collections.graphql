@@ -21,6 +21,7 @@ query getCollectionById($collectionId: uuid!) {
         workspace {
           id
           slug
+          name
         }
       }
     }

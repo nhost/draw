@@ -16,6 +16,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "classnames": "^2.3.1",
+    "dotenv": "^10.0.0",
     "graphql": "^15.5.1",
     "nhost-js-sdk": "^3.1.0",
     "react": "^17.0.2",
@@ -31,7 +32,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "codegen:react": "graphql-codegen --config codegen.yaml",
+    "codegen:react": "graphql-codegen -r dotenv/config --config codegen.yaml",
     "dev": "concurrently --restart-tries 50 --restart-after 5000 \"yarn start\" \"yarn codegen:react -w\""
   },
   "eslintConfig": {
